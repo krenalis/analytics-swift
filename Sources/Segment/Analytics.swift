@@ -96,7 +96,7 @@ public class Analytics {
             it["endpoint"] = configuration.values.endpoint
             it["flush"] =
                 "at:\(configuration.values.flushAt) int:\(configuration.values.flushInterval) pol:\(configuration.values.flushPolicies.count)"
-            it["config"] = "seg:\(configuration.values.autoAddSegmentDestination) ua:\(configuration.values.userAgent ?? "N/A")"
+            it["config"] = "seg:\(configuration.values.autoAddMeergoDestination) ua:\(configuration.values.userAgent ?? "N/A")"
         }
     }
     
@@ -256,8 +256,8 @@ extension Analytics {
         return nil
     }
 
-    /// Tells this instance of Analytics to flush any queued events up to Segment.com.  This command will also
-    /// be sent to each plugin present in the system.  A completion handler can be optionally given and will be
+    /// Tells this instance of Analytics to flush any queued events. This command will also
+    /// be sent to each plugin present in the system. A completion handler can be optionally given and will be
     /// called when flush has completed.
     public func flush(completion: (() -> Void)? = nil) {
         // only flush if we're enabled.
@@ -360,12 +360,12 @@ extension Analytics {
     /// Retrieve the version of this library in use.
     /// - Returns: A string representing the version in "BREAKING.FEATURE.FIX" format.
     public static func version() -> String {
-        return __segment_version
+        return __meergo_version
     }
 }
 
 extension Analytics {
-    /// Manually retrieve the settings that were supplied from Segment.com.
+    /// Manually retrieve the settings.
     /// - Returns: A Settings object containing integration settings, tracking plan, etc.
     public func settings() -> Settings? {
         var settings: Settings?
@@ -375,7 +375,7 @@ extension Analytics {
         return settings
     }
 
-    /// Manually enable a destination plugin.  This is useful when a given DestinationPlugin doesn't have any Segment tie-ins at all.
+    /// Manually enable a destination plugin. This is useful when a given DestinationPlugin doesn't have any Meergo tie-ins at all.
     /// This will allow the destination to be processed in the same way within this library.
     /// - Parameters:
     ///   - plugin: The destination plugin to enable.
@@ -385,13 +385,13 @@ extension Analytics {
 }
 
 extension Analytics {
-    /// Determine if there are any events that have yet to be sent to Segment
+    /// Determine if there are any events that have yet to be sent to Meergo
     public var hasUnsentEvents: Bool {
-        if let segmentDest = self.find(pluginType: SegmentDestination.self) {
-            if segmentDest.pendingUploads > 0 {
+        if let meergoDest = self.find(pluginType: MeergoDestination.self) {
+            if meergoDest.pendingUploads > 0 {
                 return true
             }
-            if segmentDest.eventCount > 0 {
+            if meergoDest.eventCount > 0 {
                 return true
             }
         }

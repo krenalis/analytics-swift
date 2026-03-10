@@ -1,6 +1,6 @@
 //
 //  State.swift
-//  Segment
+//  Meergo
 //
 //  Created by Brandon Sneed on 12/1/20.
 //

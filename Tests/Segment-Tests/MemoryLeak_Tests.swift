@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import Segment
+@testable import Meergo
 
 final class MemoryLeak_Tests: XCTestCase {
 
@@ -27,8 +27,8 @@ final class MemoryLeak_Tests: XCTestCase {
 
         RunLoop.main.run(until: Date(timeIntervalSinceNow: 1))
 
-        let segmentDest = analytics.find(pluginType: SegmentDestination.self)!
-        let destMetadata = segmentDest.timeline.find(pluginType: DestinationMetadataPlugin.self)!
+        let meergoDest = analytics.find(pluginType: MeergoDestination.self)!
+        let destMetadata = meergoDest.timeline.find(pluginType: DestinationMetadataPlugin.self)!
         let startupQueue = analytics.find(pluginType: StartupQueue.self)!
 
         let context = analytics.find(pluginType: Context.self)!
@@ -53,8 +53,8 @@ final class MemoryLeak_Tests: XCTestCase {
         }
 
         analytics.remove(plugin: startupQueue)
-        analytics.remove(plugin: segmentDest)
-        segmentDest.remove(plugin: destMetadata)
+        analytics.remove(plugin: meergoDest)
+        meergoDest.remove(plugin: destMetadata)
 
         analytics.remove(plugin: context)
         #if !os(Linux) && !os(Windows)
@@ -73,7 +73,7 @@ final class MemoryLeak_Tests: XCTestCase {
 
         RunLoop.main.run(until: Date(timeIntervalSinceNow: 1))
 
-        checkIfLeaked(segmentDest)
+        checkIfLeaked(meergoDest)
         checkIfLeaked(destMetadata)
         checkIfLeaked(startupQueue)
 

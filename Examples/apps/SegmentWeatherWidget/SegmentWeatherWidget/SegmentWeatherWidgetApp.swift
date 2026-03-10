@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Segment
+import Meergo
 
 @main
 struct SegmentWeatherWidgetApp: App {

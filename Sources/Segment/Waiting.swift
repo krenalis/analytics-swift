@@ -1,6 +1,6 @@
 //
 //  Waiting.swift
-//  Segment
+//  Meergo
 //
 //  Created by Brandon Sneed on 7/12/25.
 //

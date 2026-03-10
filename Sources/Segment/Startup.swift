@@ -1,6 +1,6 @@
 //
 //  Startup.swift
-//  Segment
+//  Meergo
 //
 //  Created by Cody Garvin on 1/5/21.
 //
@@ -13,12 +13,12 @@ extension Analytics: Subscriber {
     internal func platformStartup() {
         add(plugin: StartupQueue())
 
-        // add segment destination plugin unless
+        // add meergo destination plugin unless
         // asked not to via configuration.
-        if configuration.values.autoAddSegmentDestination {
-            let segmentDestination = SegmentDestination()
-            segmentDestination.analytics = self
-            add(plugin: segmentDestination)
+        if configuration.values.autoAddMeergoDestination {
+            let meergoDestination = MeergoDestination()
+            meergoDestination.analytics = self
+            add(plugin: meergoDestination)
         }
 
         // Setup platform specific plugins
@@ -34,7 +34,7 @@ extension Analytics: Subscriber {
 
         // plugins will receive any settings we currently have as they are added.
         // ... but lets go check if we have new stuff ....
-        // start checking periodically for settings changes from segment.com
+        // start checking periodically for settings changes
         setupSettingsCheck()
     }
 

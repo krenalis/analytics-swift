@@ -1,5 +1,5 @@
 import XCTest
-@testable import Segment
+@testable import Meergo
 
 #if os(Windows)
 

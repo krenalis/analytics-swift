@@ -1,6 +1,6 @@
 //
 //  iOSLifecycleEvents.swift
-//  Segment
+//  Meergo
 //
 //  Created by Brandon Sneed on 4/7/21.
 //

@@ -6,12 +6,13 @@
 //
 // NOTE: You can see this plugin in use in the DestinationsExample application.
 //
-// This plugin is NOT SUPPORTED by Segment.  It is here merely as an example,
+// This plugin is NOT SUPPORTED by Meergo.  It is here merely as an example,
 // and for your convenience should you find it useful.
 //
 // Adjust SPM package can be found here: https://github.com/adjust/ios_sdk
 // MIT License
 //
+// Copyright (c) 2026 Meergo
 // Copyright (c) 2021 Segment
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -33,7 +34,7 @@
 // SOFTWARE.
 
 import Foundation
-import Segment
+import Meergo
 import Adjust
 
 @objc

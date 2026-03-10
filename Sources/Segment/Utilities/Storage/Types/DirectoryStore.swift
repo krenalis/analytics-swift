@@ -51,7 +51,7 @@ public class DirectoryStore: DataStore {
     public required init(configuration: Configuration) {
         try? FileManager.default.createDirectory(at: configuration.storageLocation, withIntermediateDirectories: true)
         self.config = configuration
-        self.userDefaults = UserDefaults(suiteName: "com.segment.storage.\(config.writeKey)")!
+        self.userDefaults = UserDefaults(suiteName: "com.meergo.storage.\(config.writeKey)")!
     }
     
     public func reset() {

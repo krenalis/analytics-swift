@@ -1,6 +1,6 @@
 //
 //  watchOSLifecycleEvents.swift
-//  Segment
+//  Meergo
 //
 //  Created by Brandon Sneed on 3/29/21.
 //

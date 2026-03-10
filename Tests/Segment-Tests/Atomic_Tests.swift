@@ -1,5 +1,5 @@
 import XCTest
-@testable import Segment
+@testable import Meergo
 
 final class Atomic_Tests: XCTestCase {
     override func setUpWithError() throws {

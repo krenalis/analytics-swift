@@ -8,7 +8,7 @@
 #import "AppDelegate.h"
 #import "ObjCExample-Swift.h"
 
-@import Segment;
+@import Meergo;
 @import SegmentMixpanel;
 
 @interface AppDelegate ()
@@ -68,7 +68,7 @@
         return event;
     }];
     
-    [self.analytics addPlugin:booyaAllTrackCalls destinationKey:@"Segment.io"];
+    [self.analytics addPlugin:booyaAllTrackCalls destinationKey:@"Meergo"];
 
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.analytics track:@"schneeble schnobble"];

@@ -119,9 +119,9 @@ class watchOSLifecycleMonitor: PlatformPlugin {
 
 }
 
-// MARK: - Segment Destination Extension
+// MARK: - Meergo Destination Extension
 
-extension SegmentDestination: watchOSLifecycle {
+extension MeergoDestination: watchOSLifecycle {
     public func applicationWillEnterForeground(watchExtension: WKExtension) {
         enterForeground()
     }

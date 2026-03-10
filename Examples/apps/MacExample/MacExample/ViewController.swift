@@ -6,7 +6,7 @@
 //
 
 import Cocoa
-import Segment
+import Meergo
 
 class ViewController: NSViewController {
     var analytics: Analytics? {

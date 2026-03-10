@@ -1,12 +1,12 @@
 //
 //  StorageTests.swift
-//  Segment-Tests
+//  Meergo-Tests
 //
 //  Created by Brandon Sneed on 1/7/21.
 //
 
 import XCTest
-@testable import Segment
+@testable import Meergo
 
 class StorageTests: XCTestCase {
 
@@ -23,7 +23,7 @@ class StorageTests: XCTestCase {
         let dummySettings = """
         {
             "integrations": {
-              "Segment.io": {
+              "Meergo": {
                 "apiKey": "1234",
                 "unbundledIntegrations": [],
                 "addBundledMetadata": true
@@ -113,7 +113,7 @@ class StorageTests: XCTestCase {
         let fileURL = results!.dataFiles![0]
         
         XCTAssertTrue(fileURL.isFileURL)
-        XCTAssertTrue(fileURL.lastPathComponent == "0-segment-events.temp")
+        XCTAssertTrue(fileURL.lastPathComponent == "0-meergo-events.temp")
         XCTAssertTrue(FileManager.default.fileExists(atPath: fileURL.path))
         
         let json = try! JSONSerialization.jsonObject(with: Data(contentsOf: fileURL), options: []) as! [String: Any]
@@ -155,7 +155,7 @@ class StorageTests: XCTestCase {
         var fileURL = results!.dataFiles![0]
         
         XCTAssertTrue(fileURL.isFileURL)
-        XCTAssertTrue(fileURL.lastPathComponent == "0-segment-events.temp")
+        XCTAssertTrue(fileURL.lastPathComponent == "0-meergo-events.temp")
         XCTAssertTrue(FileManager.default.fileExists(atPath: fileURL.path))
         
         event = IdentifyEvent(userId: "brandon2", traits: try! JSON(with: MyTraits(email: "blah@blah.com")))
@@ -168,7 +168,7 @@ class StorageTests: XCTestCase {
         fileURL = results!.dataFiles![1]
         
         XCTAssertTrue(fileURL.isFileURL)
-        XCTAssertTrue(fileURL.lastPathComponent == "1-segment-events.temp")
+        XCTAssertTrue(fileURL.lastPathComponent == "1-meergo-events.temp")
         XCTAssertTrue(FileManager.default.fileExists(atPath: fileURL.path))
     }
     
@@ -312,8 +312,8 @@ class StorageTests: XCTestCase {
         
         // Clean slate
         let appSupportURL = fm.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-        let newSegmentDir = appSupportURL.appendingPathComponent("segment")
-        try? fm.removeItem(at: newSegmentDir)
+        let newMeergoDir = appSupportURL.appendingPathComponent("meergo")
+        try? fm.removeItem(at: newMeergoDir)
         
         // Create fake old data in the platform-specific old location
         #if (os(iOS) || os(watchOS)) && !targetEnvironment(macCatalyst)
@@ -323,12 +323,12 @@ class StorageTests: XCTestCase {
         #endif
         
         let oldBaseURL = fm.urls(for: oldSearchPath, in: .userDomainMask)[0]
-        let oldSegmentDir = oldBaseURL.appendingPathComponent("segment/\(writeKey)")
-        try! fm.createDirectory(at: oldSegmentDir, withIntermediateDirectories: true, attributes: nil)
+        let oldMeergoDir = oldBaseURL.appendingPathComponent("meergo/\(writeKey)")
+        try! fm.createDirectory(at: oldMeergoDir, withIntermediateDirectories: true, attributes: nil)
         
         // Write some fake event files
-        let testFile1 = oldSegmentDir.appendingPathComponent("0-segment-events.temp")
-        let testFile2 = oldSegmentDir.appendingPathComponent("1-segment-events.temp")
+        let testFile1 = oldMeergoDir.appendingPathComponent("0-meergo-events.temp")
+        let testFile2 = oldMeergoDir.appendingPathComponent("1-meergo-events.temp")
         try! "fake event data 1".write(to: testFile1, atomically: true, encoding: .utf8)
         try! "fake event data 2".write(to: testFile2, atomically: true, encoding: .utf8)
         
@@ -337,13 +337,13 @@ class StorageTests: XCTestCase {
         
         // Verify migration worked
         XCTAssertTrue(fm.fileExists(atPath: resultURL.path))
-        XCTAssertTrue(fm.fileExists(atPath: resultURL.appendingPathComponent("0-segment-events.temp").path))
-        XCTAssertTrue(fm.fileExists(atPath: resultURL.appendingPathComponent("1-segment-events.temp").path))
+        XCTAssertTrue(fm.fileExists(atPath: resultURL.appendingPathComponent("0-meergo-events.temp").path))
+        XCTAssertTrue(fm.fileExists(atPath: resultURL.appendingPathComponent("1-meergo-events.temp").path))
         
         // Verify old directory is gone
-        XCTAssertFalse(fm.fileExists(atPath: oldSegmentDir.path))
+        XCTAssertFalse(fm.fileExists(atPath: oldMeergoDir.path))
         
         // Clean up
-        try? fm.removeItem(at: newSegmentDir)
+        try? fm.removeItem(at: newMeergoDir)
     }
 }

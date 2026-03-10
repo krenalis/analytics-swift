@@ -6,7 +6,7 @@
 //
 
 import WatchKit
-import Segment
+import Meergo
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
     var analytics: Analytics? = nil

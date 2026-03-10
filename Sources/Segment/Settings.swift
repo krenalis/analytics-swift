@@ -1,6 +1,6 @@
 //
 //  Settings.swift
-//  Segment
+//  Meergo
 //
 //  Created by Cody Garvin on 12/15/20.
 //
@@ -18,18 +18,18 @@ public struct Settings: Codable {
 
     public init(writeKey: String, endpoint: String) {
         integrations = try! JSON([
-            SegmentDestination.Constants.integrationName.rawValue: [
-                SegmentDestination.Constants.apiKey.rawValue: writeKey,
-                SegmentDestination.Constants.endpoint.rawValue: endpoint
+            MeergoDestination.Constants.integrationName.rawValue: [
+                MeergoDestination.Constants.apiKey.rawValue: writeKey,
+                MeergoDestination.Constants.endpoint.rawValue: endpoint
             ]
         ])
     }
 
     public init(writeKey: String) {
         integrations = try! JSON([
-            SegmentDestination.Constants.integrationName.rawValue: [
-                SegmentDestination.Constants.apiKey.rawValue: writeKey,
-                SegmentDestination.Constants.endpoint.rawValue: HTTPClient.getDefaultEndpoint()
+            MeergoDestination.Constants.integrationName.rawValue: [
+                MeergoDestination.Constants.apiKey.rawValue: writeKey,
+                MeergoDestination.Constants.endpoint.rawValue: HTTPClient.getDefaultEndpoint()
             ]
         ])
     }
@@ -71,7 +71,7 @@ public struct Settings: Codable {
      * Easily retrieve settings for a specific integration name.
      *
      * - Parameter for: The string name of the integration
-     * - Returns: The dictionary representing the settings for this integration as supplied by Segment.com
+     * - Returns: The dictionary representing the settings for this integration as supplied
      */
     public func integrationSettings(forKey key: String) -> [String: Any]? {
         guard let settings = integrations?.dictionaryValue else { return nil }

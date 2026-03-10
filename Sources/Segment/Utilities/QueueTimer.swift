@@ -1,6 +1,6 @@
 //
 //  QueueTimer.swift
-//  Segment
+//  Meergo
 //
 //  Created by Brandon Sneed on 6/16/21.
 //

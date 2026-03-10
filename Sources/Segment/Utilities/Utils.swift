@@ -1,6 +1,6 @@
 //
 //  Utils.swift
-//  Segment
+//  Meergo
 //
 //  Created by Brandon Sneed on 5/18/21.
 //
@@ -77,26 +77,26 @@ extension Optional: Flattenable {
 internal func eventStorageDirectory(writeKey: String) -> URL {
     let urls = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)
     let appSupportURL = urls[0]
-    let segmentURL = appSupportURL.appendingPathComponent("segment/\(writeKey)/")
+    let meergoURL = appSupportURL.appendingPathComponent("meergo/\(writeKey)/")
     
     // Handle one-time migration from old locations
-    migrateFromOldLocations(writeKey: writeKey, to: segmentURL)
+    migrateFromOldLocations(writeKey: writeKey, to: meergoURL)
     
     // try to create it, will fail if already exists, nbd.
     // tvOS, watchOS regularly clear out data.
-    try? FileManager.default.createDirectory(at: segmentURL, withIntermediateDirectories: true, attributes: nil)
-    return segmentURL
+    try? FileManager.default.createDirectory(at: meergoURL, withIntermediateDirectories: true, attributes: nil)
+    return meergoURL
 }
 
 private func migrateFromOldLocations(writeKey: String, to newLocation: URL) {
     let fm = FileManager.default
     
-    // Get the parent of where our new segment directory should live
+    // Get the parent of where our new meergo directory should live
     let appSupportURL = fm.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-    let newSegmentDir = appSupportURL.appendingPathComponent("segment")
+    let newMeergoDir = appSupportURL.appendingPathComponent("meergo")
     
-    // If segment dir already exists in app support, we're done
-    guard !fm.fileExists(atPath: newSegmentDir.path) else { return }
+    // If meergo dir already exists in app support, we're done
+    guard !fm.fileExists(atPath: newMeergoDir.path) else { return }
     
     // Only check the old location that was actually used on this platform
     #if (os(iOS) || os(watchOS)) && !targetEnvironment(macCatalyst)
@@ -106,14 +106,14 @@ private func migrateFromOldLocations(writeKey: String, to newLocation: URL) {
     #endif
     
     guard let oldBaseURL = fm.urls(for: oldSearchPath, in: .userDomainMask).first else { return }
-    let oldSegmentDir = oldBaseURL.appendingPathComponent("segment")
+    let oldMeergoDir = oldBaseURL.appendingPathComponent("meergo")
     
-    guard fm.fileExists(atPath: oldSegmentDir.path) else { return }
+    guard fm.fileExists(atPath: oldMeergoDir.path) else { return }
     
     do {
-        try fm.moveItem(at: oldSegmentDir, to: newSegmentDir)
-        Analytics.segmentLog(message: "Migrated analytics data from \(oldSegmentDir.path)", kind: .debug)
+        try fm.moveItem(at: oldMeergoDir, to: newMeergoDir)
+        Analytics.meergoLog(message: "Migrated analytics data from \(oldMeergoDir.path)", kind: .debug)
     } catch {
-        Analytics.segmentLog(message: "Failed to migrate from \(oldSegmentDir.path): \(error)", kind: .error)
+        Analytics.meergoLog(message: "Failed to migrate from \(oldMeergoDir.path): \(error)", kind: .error)
     }
 }

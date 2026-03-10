@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Segment
+import Meergo
 import UIKit
 
 struct UserTraits: Codable {

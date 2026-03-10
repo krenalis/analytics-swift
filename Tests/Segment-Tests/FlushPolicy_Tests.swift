@@ -6,12 +6,12 @@
 //
 
 import XCTest
-@testable import Segment
+@testable import Meergo
 
 class DummyFlushPolicy: FlushPolicy {
-    var analytics: Segment.Analytics?
+    var analytics: Meergo.Analytics?
     
-    func configure(analytics: Segment.Analytics) {
+    func configure(analytics: Meergo.Analytics) {
         
     }
     
@@ -19,7 +19,7 @@ class DummyFlushPolicy: FlushPolicy {
         return true
     }
     
-    func updateState(event: Segment.RawEvent) {
+    func updateState(event: Meergo.RawEvent) {
         
     }
     

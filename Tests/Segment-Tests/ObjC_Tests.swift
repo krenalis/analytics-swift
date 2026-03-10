@@ -1,6 +1,6 @@
 //
 //  ObjC_Tests.swift
-//  Segment-Tests
+//  Meergo-Tests
 //
 //  Created by Brandon Sneed on 8/13/21.
 //
@@ -8,7 +8,7 @@
 #if !os(Linux) && !os(Windows)
 
 import XCTest
-@testable import Segment
+@testable import Meergo
 
 class ObjC_Tests: XCTestCase {
 
@@ -114,7 +114,7 @@ class ObjC_Tests: XCTestCase {
             destHit = true
             return event
         }
-        analytics.add(plugin: destPlugin, destinationKey: "Segment.io")
+        analytics.add(plugin: destPlugin, destinationKey: "Meergo")
 
         waitUntilStarted(analytics: analytics.analytics)
 

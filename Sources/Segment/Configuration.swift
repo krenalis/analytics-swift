@@ -15,7 +15,7 @@ import JSONSafeEncoding
 // MARK: - Custom AnonymousId generator
 /// Conform to this protocol to generate your own AnonymousID
 public protocol AnonymousIdGenerator: AnyObject, Codable {
-    /// Returns a new anonymousId.  Segment still manages storage and retrieval of the
+    /// Returns a new anonymousId.  Meergo still manages storage and retrieval of the
     /// current anonymousId and will call this method when new id's are needed.
     ///
     /// - Returns: A new anonymousId.
@@ -31,7 +31,7 @@ public enum OperatingMode {
     case asynchronous
 
     static internal let defaultQueue = DispatchQueue(
-        label: "com.segment.operatingModeQueue", qos: .utility)
+        label: "com.meergo.operatingModeQueue", qos: .utility)
 }
 
 // MARK: - Storage Mode
@@ -113,7 +113,7 @@ public class Configuration {
         var flushAt: Int = 20
         var flushInterval: TimeInterval = 30
         var defaultSettings: Settings? = nil
-        var autoAddSegmentDestination: Bool = true
+        var autoAddMeergoDestination: Bool = true
         var endpoint: String = HTTPClient.getDefaultEndpoint()
         var requestFactory: ((URLRequest) -> URLRequest)? = nil
         var errorHandler: ((Error) -> Void)? = nil
@@ -124,7 +124,7 @@ public class Configuration {
         var jsonNonConformingNumberStrategy: JSONSafeEncoder.NonConformingFloatEncodingStrategy =
             .zero
         var storageMode: StorageMode = .disk
-        var anonymousIdGenerator: AnonymousIdGenerator = SegmentAnonymousId()
+        var anonymousIdGenerator: AnonymousIdGenerator = MeergoAnonymousId()
         var httpSession: (() -> any HTTPSession) = HTTPSessions.urlSession
     }
 
@@ -132,14 +132,14 @@ public class Configuration {
 
     /// Initialize a configuration object to pass along to an Analytics instance.
     ///
-    /// - Parameter writeKey: Your Segment write key value
+    /// - Parameter writeKey: Your Meergo write key value
     public init(writeKey: String) {
         self.values = Values(writeKey: writeKey)
         JSON.jsonNonConformingNumberStrategy = self.values.jsonNonConformingNumberStrategy
-        // enable segment destination by default
+        // enable meergo destination by default
         var settings = Settings(writeKey: writeKey)
         settings.integrations = try? JSON([
-            "Segment.io": true
+            "Meergo": true
         ])
 
         self.defaultSettings(settings)
@@ -218,7 +218,7 @@ extension Configuration {
     ///
     /// Example:
     /// ```
-    /// let defaults = Settings.load(resource: "mySegmentSettings.json")
+    /// let defaults = Settings.load(resource: "myMeergoSettings.json")
     /// let config = Configuration(writeKey: "1234").defaultSettings(defaults)
     /// ```
     ///
@@ -230,15 +230,15 @@ extension Configuration {
         return self
     }
 
-    /// Enable/Disable the automatic adding of Segment as a destination.
+    /// Enable/Disable the automatic adding of Meergo as a destination.
     /// This can be useful in instances such as Consent Management, or in device
     /// mode only setups.  The default value is `true`.
     ///
     /// - Parameter value: true/false
     /// - Returns: The current Configuration.
     @discardableResult
-    public func autoAddSegmentDestination(_ value: Bool) -> Configuration {
-        values.autoAddSegmentDestination = value
+    public func autoAddMeergoDestination(_ value: Bool) -> Configuration {
+        values.autoAddMeergoDestination = value
         return self
     }
 
@@ -266,7 +266,7 @@ extension Configuration {
         return self
     }
 
-    /// Sets an error handler to be called when errors are encountered by the Segment
+    /// Sets an error handler to be called when errors are encountered by the Meergo
     /// library.  See `AnalyticsError` for a list of possible errors that can be
     /// encountered.
     ///
@@ -295,7 +295,7 @@ extension Configuration {
     }
 
     /// Specify a custom queue to use when performing a flush operation.  The default
-    /// value is a Segment owned background queue.
+    /// value is a Meergo owned background queue.
     @discardableResult
     public func flushQueue(_ queue: DispatchQueue) -> Configuration {
         values.flushQueue = queue
@@ -327,7 +327,7 @@ extension Configuration {
         return self
     }
 
-    /// Specify a custom anonymousId generator.  The default is and instance of `SegmentAnonymousId`.
+    /// Specify a custom anonymousId generator.  The default is and instance of `MeergoAnonymousId`.
     @discardableResult
     public func anonymousIdGenerator(_ generator: AnonymousIdGenerator) -> Configuration {
         values.anonymousIdGenerator = generator

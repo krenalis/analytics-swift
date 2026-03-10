@@ -1,7 +1,7 @@
 #if !os(Linux) && !os(Windows)
 import XCTest
 
-@testable import Segment
+@testable import Meergo
 
 class TelemetryTests: XCTestCase {
     var errors: [String] = []

@@ -5,7 +5,7 @@
 //  Created by Alan Charles on 8/15/21.
 //
 
-import Segment
+import Meergo
 import WidgetKit
 import SwiftUI
 
@@ -76,7 +76,7 @@ struct ArticleWidget: Widget {
             ArticleWidgetEntryView(entry: entry)
         }
         .supportedFamilies([.systemMedium, .systemLarge])
-        .configurationDisplayName("Segment Documentation")
+        .configurationDisplayName("Meergo Documentation")
         .description("Documentation at your fingertips.")
     }
 }

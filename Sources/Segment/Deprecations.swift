@@ -1,6 +1,6 @@
 //
 //  Deprecations.swift
-//  Segment
+//  Meergo
 //
 //  Created by Brandon Sneed on 12/9/20.
 //

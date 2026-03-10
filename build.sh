@@ -14,15 +14,15 @@ fi
 
 echo "Removing old files ..."
 
-rm Segment.zip
+rm Meergo.zip
 rm Sovran.zip
-rm Segment.sha256
+rm Meergo.sha256
 rm Sovran.sha256
 rm JSONSafeEncoding.zip
 rm JSONSafeEncoding.sha256
 
 echo "Building XCFrameworks ..."
 
-swift create-xcframework --clean --platform ios --platform macos --platform maccatalyst --platform tvos --platform watchos --stack-evolution --zip Segment Sovran JSONSafeEncoding
+swift create-xcframework --clean --platform ios --platform macos --platform maccatalyst --platform tvos --platform watchos --stack-evolution --zip Meergo Sovran JSONSafeEncoding
 
 echo "Done."

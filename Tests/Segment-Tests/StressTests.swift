@@ -1,6 +1,6 @@
 //
 //  StressTests.swift
-//  Segment-Tests
+//  Meergo-Tests
 //
 //  Created by Brandon Sneed on 11/4/21.
 //
@@ -8,7 +8,7 @@
 #if !os(Linux) && !os(tvOS) && !os(watchOS) && !os(visionOS) && !os(Windows)
 
 import XCTest
-@testable import Segment
+@testable import Meergo
 
 class StressTests: XCTestCase {
 
@@ -251,7 +251,7 @@ class StressTests: XCTestCase {
         waitUntilStarted(analytics: analytics)
         
         // set the httpclient to use our blocker session
-        let segment = analytics.find(pluginType: SegmentDestination.self)
+        let meergo = analytics.find(pluginType: MeergoDestination.self)
         let configuration = URLSessionConfiguration.ephemeral
         configuration.allowsCellularAccess = true
         configuration.timeoutIntervalForResource = 30
@@ -262,7 +262,7 @@ class StressTests: XCTestCase {
                                                "Authorization": "Basic test",
                                                "User-Agent": "analytics-ios/\(Analytics.version())"]
         let blockSession = URLSession(configuration: configuration, delegate: nil, delegateQueue: nil)
-        segment?.httpClient?.session = blockSession
+        meergo?.httpClient?.session = blockSession
 
         let writeQueue1 = DispatchQueue(label: "write queue 1")
         let writeQueue2 = DispatchQueue(label: "write queue 2")

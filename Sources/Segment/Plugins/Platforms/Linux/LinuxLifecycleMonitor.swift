@@ -1,6 +1,6 @@
 //
 //  LinuxLifecycleEvents.swift
-//  Segment
+//  Meergo
 //
 //  Created by Brandon Sneed on 1/4/21.
 //

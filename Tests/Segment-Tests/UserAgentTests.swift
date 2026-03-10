@@ -9,7 +9,7 @@ import XCTest
 #if canImport(WebKit)
 import WebKit
 #endif
-@testable import Segment
+@testable import Meergo
 
 final class UserAgentTests: XCTestCase {
 

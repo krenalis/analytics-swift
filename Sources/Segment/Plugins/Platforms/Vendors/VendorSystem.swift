@@ -1,6 +1,6 @@
 //
 //  VendorSystem.swift
-//  Segment
+//  Meergo
 //
 //  Created by Brandon Sneed on 2/26/21.
 //

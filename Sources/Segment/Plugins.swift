@@ -1,6 +1,6 @@
 //
 //  Plugins.swift
-//  Segment
+//  Meergo
 //
 //  Created by Brandon Sneed on 12/3/20.
 //

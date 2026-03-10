@@ -69,7 +69,7 @@ extension Analytics {
     public func reportInternalError(_ error: Error, fatal: Bool = false) {
         let translatedError = Self.translate(error: error)
         configuration.values.errorHandler?(translatedError)
-        Self.segmentLog(message: "An internal error occurred: \(translatedError)", kind: .error)
+        Self.meergoLog(message: "An internal error occurred: \(translatedError)", kind: .error)
         if fatal {
             exceptionFailure("A critical error occurred: \(translatedError)")
         }
@@ -84,7 +84,7 @@ extension Analytics {
         // we don't have an instance of analytics to call to get our error handler,
         // but we can at least report the message to the console.
         let translatedError = Self.translate(error: error)
-        Self.segmentLog(message: "An internal error occurred: \(translatedError)", kind: .error)
+        Self.meergoLog(message: "An internal error occurred: \(translatedError)", kind: .error)
         if fatal {
             exceptionFailure("A critical error occurred: \(translatedError)")
         }

@@ -1,6 +1,6 @@
 //
-//  SegmentDestination.swift
-//  Segment
+//  MeergoDestination.swift
+//  Meergo
 //
 //  Created by Cody Garvin on 1/5/21.
 //
@@ -16,15 +16,15 @@ import Sovran
 import FoundationNetworking
 #endif
 
-public class SegmentAnonymousId: AnonymousIdGenerator {
+public class MeergoAnonymousId: AnonymousIdGenerator {
     public func newAnonymousId() -> String {
         return UUID().uuidString
     }
 }
 
-public class SegmentDestination: DestinationPlugin, Subscriber, FlushCompletion {
+public class MeergoDestination: DestinationPlugin, Subscriber, FlushCompletion {
     internal enum Constants: String {
-        case integrationName = "Segment.io"
+        case integrationName = "Meergo"
         case endpoint = "endpoint"
         case apiKey = "apiKey"
     }
@@ -49,7 +49,7 @@ public class SegmentDestination: DestinationPlugin, Subscriber, FlushCompletion 
 
     internal var httpClient: HTTPClient?
     private var uploads = [UploadTaskInfo]()
-    private let uploadsQueue = DispatchQueue(label: "uploadsQueue.segment.com")
+    private let uploadsQueue = DispatchQueue(label: "uploadsQueue.meergo.com")
     private var storage: Storage?
 
     @Atomic internal var eventCount: Int = 0
@@ -65,28 +65,9 @@ public class SegmentDestination: DestinationPlugin, Subscriber, FlushCompletion 
 
     public func update(settings: Settings, type: UpdateType) {
         guard let analytics = analytics else { return }
-        let segmentInfo = settings.integrationSettings(forKey: self.key)
-        // if customer cycles out a writekey at app.segment.com, this is necessary.
-        /*
-         This actually works differently than anticipated.  It was thought that when a writeKey was
-         revoked, it's old writekey would redirect to the new, but it doesn't work this way.  As a result
-         it doesn't appear writekey can be changed remotely.  Leaving this here in case that changes in the
-         near future (written on 10/29/2022).
-         */
-        /*
-        if let key = segmentInfo?[Self.Constants.apiKey.rawValue] as? String, key.isEmpty == false {
-            if key != analytics.configuration.values.writeKey {
-                /*
-                 - would need to flush.
-                 - would need to change the writeKey across the system.
-                 - would need to re-init storage.
-                 - probably other things too ...
-                 */
-            }
-        }
-         */
-        // if customer specifies a different endpoint at app.segment.com ...
-        if let endpoint = segmentInfo?[Self.Constants.endpoint.rawValue] as? String, endpoint.isEmpty == false {
+        let meergoInfo = settings.integrationSettings(forKey: self.key)
+        // if customer specifies a different endpoint in Meergo
+        if let endpoint = meergoInfo?[Self.Constants.endpoint.rawValue] as? String, endpoint.isEmpty == false {
             if endpoint != analytics.configuration.values.endpoint {
                 analytics.configuration.values.endpoint = endpoint
                 httpClient = HTTPClient(analytics: analytics)
@@ -152,7 +133,7 @@ public class SegmentDestination: DestinationPlugin, Subscriber, FlushCompletion 
     }
 }
 
-extension SegmentDestination {
+extension MeergoDestination {
     private func flushFiles(group: DispatchGroup) {
         guard let storage = self.storage else { return }
         guard let analytics = self.analytics else { return }
@@ -184,7 +165,7 @@ extension SegmentDestination {
                             
                             // we don't want to retry events in a given batch when a 400
                             // response for malformed JSON is returned
-                        case .failure(Segment.HTTPClientErrors.statusCode(code: 400)):
+                        case .failure(Meergo.HTTPClientErrors.statusCode(code: 400)):
                             storage.remove(data: [url])
                             cleanupUploads()
                         default:
@@ -255,7 +236,7 @@ extension SegmentDestination {
                     
                     // we don't want to retry events in a given batch when a 400
                     // response for malformed JSON is returned
-                case .failure(Segment.HTTPClientErrors.statusCode(code: 400)):
+                case .failure(Meergo.HTTPClientErrors.statusCode(code: 400)):
                     storage.remove(data: removable)
                     cleanupUploads()
                 default:
@@ -285,7 +266,7 @@ extension SegmentDestination {
 
 // MARK: - Upload management
 
-extension SegmentDestination {
+extension MeergoDestination {
     internal func cleanupUploads() {
         // lets go through and get rid of any tasks that aren't running.
         // either they were suspended because a background task took too
@@ -323,8 +304,8 @@ extension SegmentDestination {
 
 // MARK: Versioning
 
-extension SegmentDestination: VersionedPlugin {
+extension MeergoDestination: VersionedPlugin {
     public static func version() -> String {
-        return __segment_version
+        return __meergo_version
     }
 }

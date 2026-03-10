@@ -11,6 +11,7 @@ import Foundation
 
 // MIT License
 //
+// Copyright (c) 2026 Meergo
 // Copyright (c) 2023 Segment
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -32,11 +33,11 @@ import Foundation
 // SOFTWARE.
 
 import Foundation
-import Segment
+import Meergo
 
 public class NetBlockerFlushPolicy: FlushPolicy {
     public var type = PluginType.utility
-    public weak var analytics: Segment.Analytics?
+    public weak var analytics: Meergo.Analytics?
     
     static func networkBlockedHandler(error: Error, blockerPolicy: NetBlockerFlushPolicy) {
         switch error {
@@ -54,7 +55,7 @@ public class NetBlockerFlushPolicy: FlushPolicy {
         }
     }
     
-    public func configure(analytics: Segment.Analytics) {
+    public func configure(analytics: Meergo.Analytics) {
         // if we've already been configured, exit.
         guard self.analytics == nil else { return }
         
@@ -71,7 +72,7 @@ public class NetBlockerFlushPolicy: FlushPolicy {
         return self.analytics?.enabled ?? true
     }
     
-    public func updateState(event: Segment.RawEvent) {
+    public func updateState(event: Meergo.RawEvent) {
         // do nothing
     }
     

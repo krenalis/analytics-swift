@@ -1,6 +1,6 @@
 //
 //  LifecycleEvents.swift
-//  Segment
+//  Meergo
 //
 //  Created by Cody Garvin on 12/4/20.
 //
@@ -174,10 +174,10 @@ class iOSLifecycleMonitor: PlatformPlugin {
     }
 }
 
-// MARK: - Segment Destination Extension
+// MARK: - Meergo Destination Extension
 
 
-extension SegmentDestination: iOSLifecycle {
+extension MeergoDestination: iOSLifecycle {
     public func applicationWillEnterForeground(application: UIApplication?) {
         enterForeground()
     }
@@ -187,7 +187,7 @@ extension SegmentDestination: iOSLifecycle {
     }
 }
 
-extension SegmentDestination.UploadTaskInfo {
+extension MeergoDestination.UploadTaskInfo {
     init(url: URL?, data: Data?, task: any DataTask) {
         self.url = url
         self.data = data

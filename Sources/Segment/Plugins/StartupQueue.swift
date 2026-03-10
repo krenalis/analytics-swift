@@ -1,6 +1,6 @@
 //
 //  StartupQueue.swift
-//  Segment
+//  Meergo
 //
 //  Created by Brandon Sneed on 6/4/21.
 //
@@ -26,7 +26,7 @@ public class StartupQueue: Plugin, Subscriber {
         }
     }
     
-    let syncQueue = DispatchQueue(label: "startupQueue.segment.com")
+    let syncQueue = DispatchQueue(label: "startupQueue.meergo.com")
     var queuedEvents = [RawEvent]()
     
     required init() { }

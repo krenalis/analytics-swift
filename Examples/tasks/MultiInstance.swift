@@ -9,6 +9,7 @@
 
 // MIT License
 //
+// Copyright (c) 2026 Meergo
 // Copyright (c) 2021 Segment
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,7 +31,7 @@
 // SOFTWARE.
 
 import Foundation
-import Segment
+import Meergo
 
 /**
  An example of implementing multiple Analytics instances in a single application.

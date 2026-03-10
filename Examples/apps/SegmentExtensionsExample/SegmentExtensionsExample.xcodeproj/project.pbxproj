@@ -23,8 +23,8 @@
 		BAA1FCDA26C9957A0022822C /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA1FCD826C98ED80022822C /* Article.swift */; };
 		BAA1FCDF26C996EF0022822C /* ArticleItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA1FCDD26C996CD0022822C /* ArticleItemView.swift */; };
 		BAA1FCE226C9983F0022822C /* ArticleSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA1FCE026C998280022822C /* ArticleSectionView.swift */; };
-		BAC3990026CAF7FB00B6915B /* Segment in Frameworks */ = {isa = PBXBuildFile; productRef = BAC398FF26CAF7FB00B6915B /* Segment */; };
-		BAC3990226CAF81200B6915B /* Segment in Frameworks */ = {isa = PBXBuildFile; productRef = BAC3990126CAF81200B6915B /* Segment */; };
+		BAC3990026CAF7FB00B6915B /* Meergo in Frameworks */ = {isa = PBXBuildFile; productRef = BAC398FF26CAF7FB00B6915B /* Meergo */; };
+		BAC3990226CAF81200B6915B /* Meergo in Frameworks */ = {isa = PBXBuildFile; productRef = BAC3990126CAF81200B6915B /* Meergo */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,7 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAC3990026CAF7FB00B6915B /* Segment in Frameworks */,
+				BAC3990026CAF7FB00B6915B /* Meergo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,7 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAC3990226CAF81200B6915B /* Segment in Frameworks */,
+				BAC3990226CAF81200B6915B /* Meergo in Frameworks */,
 				BAA1FCCB26C98E580022822C /* SwiftUI.framework in Frameworks */,
 				BAA1FCCA26C98E580022822C /* WidgetKit.framework in Frameworks */,
 			);
@@ -181,7 +181,7 @@
 			);
 			name = SegmentExtensionsExample;
 			packageProductDependencies = (
-				BAC398FF26CAF7FB00B6915B /* Segment */,
+				BAC398FF26CAF7FB00B6915B /* Meergo */,
 			);
 			productName = SegmentExtensionsExample;
 			productReference = BA1D8C4B26C2D92F00B8185B /* SegmentExtensionsExample.app */;
@@ -202,7 +202,7 @@
 			);
 			name = ArticleWidgetExtension;
 			packageProductDependencies = (
-				BAC3990126CAF81200B6915B /* Segment */,
+				BAC3990126CAF81200B6915B /* Meergo */,
 			);
 			productName = ArticleWidgetExtension;
 			productReference = BAA1FCC926C98E580022822C /* ArticleWidgetExtension.appex */;
@@ -301,7 +301,7 @@
 		};
 		BAA1FCE426C99CD30022822C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			productRef = BAA1FCE326C99CD30022822C /* Segment */;
+			productRef = BAA1FCE326C99CD30022822C /* Meergo */;
 		};
 /* End PBXTargetDependency section */
 
@@ -569,18 +569,18 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		BAA1FCE326C99CD30022822C /* Segment */ = {
+		BAA1FCE326C99CD30022822C /* Meergo */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BA1D8C6A26C4750F00B8185B /* XCRemoteSwiftPackageReference "analytics-swift" */;
-			productName = Segment;
+			productName = Meergo;
 		};
-		BAC398FF26CAF7FB00B6915B /* Segment */ = {
+		BAC398FF26CAF7FB00B6915B /* Meergo */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Segment;
+			productName = Meergo;
 		};
-		BAC3990126CAF81200B6915B /* Segment */ = {
+		BAC3990126CAF81200B6915B /* Meergo */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Segment;
+			productName = Meergo;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

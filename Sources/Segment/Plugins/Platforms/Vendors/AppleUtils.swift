@@ -1,6 +1,6 @@
 //
 //  AppleUtils.swift
-//  Segment
+//  Meergo
 //
 //  Created by Brandon Sneed on 2/26/21.
 //
@@ -367,11 +367,11 @@ internal func connectionStatus() -> ConnectionStatus {
 /* 5-minute timer to check connection status.  Checking this for
  every event that comes through seems like overkill. */
 
-private var __segment_connectionStatus: ConnectionStatus = .unknown
-private var __segment_connectionStatusTimer: QueueTimer? = nil
-private var __segment_connectionStatusLock = NSLock()
+private var __meergo_connectionStatus: ConnectionStatus = .unknown
+private var __meergo_connectionStatusTimer: QueueTimer? = nil
+private var __meergo_connectionStatusLock = NSLock()
 
-internal func __segment_connectionStatusCheck() -> ConnectionStatus {
+internal func __meergo_connectionStatusCheck() -> ConnectionStatus {
     var zeroAddress = sockaddr_in()
     zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
     zeroAddress.sin_family = sa_family_t(AF_INET)
@@ -395,17 +395,17 @@ internal func __segment_connectionStatusCheck() -> ConnectionStatus {
 internal func connectionStatus() -> ConnectionStatus {
     // the locking may seem like overkill since we're updating it in a queue
     // however, it is necessary since we're polling. :(
-    if __segment_connectionStatusTimer == nil {
-        __segment_connectionStatusTimer = QueueTimer(interval: 300, immediate: true) {
-            __segment_connectionStatusLock.lock()
-            defer { __segment_connectionStatusLock.unlock() }
-            __segment_connectionStatus = __segment_connectionStatusCheck()
+    if __meergo_connectionStatusTimer == nil {
+        __meergo_connectionStatusTimer = QueueTimer(interval: 300, immediate: true) {
+            __meergo_connectionStatusLock.lock()
+            defer { __meergo_connectionStatusLock.unlock() }
+            __meergo_connectionStatus = __meergo_connectionStatusCheck()
         }
     }
     
-    __segment_connectionStatusLock.lock()
-    defer { __segment_connectionStatusLock.unlock() }
-    return __segment_connectionStatus
+    __meergo_connectionStatusLock.lock()
+    defer { __meergo_connectionStatusLock.unlock() }
+    return __meergo_connectionStatus
 }
 */
 #endif

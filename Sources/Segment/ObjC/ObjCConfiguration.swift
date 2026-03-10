@@ -10,7 +10,7 @@
 import Foundation
 import JSONSafeEncoding
 
-@objc(SEGConfiguration)
+@objc(MRGConfiguration)
 public class ObjCConfiguration: NSObject {
     internal var configuration: Configuration
 
@@ -96,16 +96,16 @@ public class ObjCConfiguration: NSObject {
         }
     }
 
-    /// Enable/Disable the automatic adding of Segment as a destination.
+    /// Enable/Disable the automatic adding of Meergo as a destination.
     /// This can be useful in instances such as Consent Management, or in device
     /// mode only setups.  The default value is `true`.
     @objc
-    public var autoAddSegmentDestination: Bool {
+    public var autoAddMeergoDestination: Bool {
         get {
-            return configuration.values.autoAddSegmentDestination
+            return configuration.values.autoAddMeergoDestination
         }
         set(value) {
-            configuration.autoAddSegmentDestination(value)
+            configuration.autoAddMeergoDestination(value)
         }
     }
 
@@ -138,7 +138,7 @@ public class ObjCConfiguration: NSObject {
 
     /// Initialize a configuration object to pass along to an Analytics instance.
     ///
-    /// - Parameter writeKey: Your Segment write key value
+    /// - Parameter writeKey: Your Meergo write key value
     @objc
     public init(writeKey: String) {
         self.configuration = Configuration(writeKey: writeKey)

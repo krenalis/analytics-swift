@@ -1,6 +1,6 @@
 //
 //  DestinationMetadataPlugin.swift
-//  Segment
+//  Meergo
 //
 //  Created by Prayansh Srivastava on 2/9/22.
 //
@@ -8,7 +8,7 @@
 import Foundation
 
 /**
- * DestinationMetadataPlugin adds `_metadata` information to payloads that Segment uses to
+ * DestinationMetadataPlugin adds `_metadata` information to payloads that Meergo uses to
  * determine delivery of events to cloud/device-mode destinations
  */
 public class DestinationMetadataPlugin: Plugin {
@@ -26,8 +26,8 @@ public class DestinationMetadataPlugin: Plugin {
         // Mark all loaded and enabled destinations as bundled
         var bundled: Set<String> = []
         for plugin in destinations {
-            // Skip processing for Segment.io
-            if (plugin is SegmentDestination) {
+            // Skip processing for meergo
+            if (plugin is MeergoDestination) {
                 continue
             }
             let hasSettings = integrationSettings.hasIntegrationSettings(forPlugin: plugin)
@@ -43,13 +43,13 @@ public class DestinationMetadataPlugin: Plugin {
 
         let activeIntegrations = integrationSettings.integrations?.dictionaryValue ?? [:]
         for (integration, _) in activeIntegrations {
-            if (integration != "Segment.io" && !bundled.contains(integration)) {
+            if (integration != "Meergo" && !bundled.contains(integration)) {
                 unbundled.insert(integration)
             }
         }
 
-        let segmentInfo = integrationSettings.integrationSettings(forKey: "Segment.io")
-        let unbundledIntegrations = segmentInfo?["unbundledIntegrations"] as? [String] ?? []
+        let meergoInfo = integrationSettings.integrationSettings(forKey: "Meergo")
+        let unbundledIntegrations = meergoInfo?["unbundledIntegrations"] as? [String] ?? []
         for integration in unbundledIntegrations {
             if (!bundled.contains(integration)) {
                 unbundled.insert(integration)

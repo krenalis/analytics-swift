@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Segment
+import Meergo
 
 struct ContentView: View {
     var body: some View {

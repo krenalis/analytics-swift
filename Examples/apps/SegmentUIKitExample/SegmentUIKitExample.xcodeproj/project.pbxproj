@@ -19,7 +19,7 @@
 		46E3834E26582D9E00BA2502 /* IDFACollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E3834A26582D9E00BA2502 /* IDFACollection.swift */; };
 		46E3835326582DA400BA2502 /* CustomScreenTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E3835126582DA400BA2502 /* CustomScreenTracking.swift */; };
 		46E3835426582DA400BA2502 /* MultiInstance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E3835226582DA400BA2502 /* MultiInstance.swift */; };
-		46E383572658307800BA2502 /* Segment in Frameworks */ = {isa = PBXBuildFile; productRef = 46E383562658307800BA2502 /* Segment */; };
+		46E383572658307800BA2502 /* Meergo in Frameworks */ = {isa = PBXBuildFile; productRef = 46E383562658307800BA2502 /* Meergo */; };
 		46E73DA326F531320021042C /* NotificationTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E73DA226F531320021042C /* NotificationTracking.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46E383572658307800BA2502 /* Segment in Frameworks */,
+				46E383572658307800BA2502 /* Meergo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,7 +138,7 @@
 			);
 			name = SegmentUIKitExample;
 			packageProductDependencies = (
-				46E383562658307800BA2502 /* Segment */,
+				46E383562658307800BA2502 /* Meergo */,
 			);
 			productName = SegmentUIKitExample;
 			productReference = 46022781261F860100A9E913 /* SegmentUIKitExample.app */;
@@ -214,7 +214,7 @@
 /* Begin PBXTargetDependency section */
 		460227A1261F887C00A9E913 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			productRef = 460227A0261F887C00A9E913 /* Segment */;
+			productRef = 460227A0261F887C00A9E913 /* Meergo */;
 		};
 /* End PBXTargetDependency section */
 
@@ -370,7 +370,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.segment.SegmentUIKitExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.meergo.SegmentUIKitExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
@@ -394,7 +394,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.segment.SegmentUIKitExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.meergo.SegmentUIKitExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
@@ -439,14 +439,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		460227A0261F887C00A9E913 /* Segment */ = {
+		460227A0261F887C00A9E913 /* Meergo */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4602279B261F884600A9E913 /* XCRemoteSwiftPackageReference "analytics-swift" */;
-			productName = Segment;
+			productName = Meergo;
 		};
-		46E383562658307800BA2502 /* Segment */ = {
+		46E383562658307800BA2502 /* Meergo */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Segment;
+			productName = Meergo;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

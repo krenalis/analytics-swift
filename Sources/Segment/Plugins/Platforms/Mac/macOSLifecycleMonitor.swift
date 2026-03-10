@@ -1,6 +1,6 @@
 //
 //  macOSLifecycleEvents.swift
-//  Segment
+//  Meergo
 //
 //  Created by Brandon Sneed on 1/4/21.
 //
@@ -43,7 +43,7 @@ public extension macOSLifecycle {
 }
 
 class macOSLifecycleMonitor: PlatformPlugin {
-    static var specificName = "Segment_macOSLifecycleMonitor"
+    static var specificName = "Meergo_macOSLifecycleMonitor"
     let type = PluginType.utility
     let name = specificName
     weak var analytics: Analytics?
@@ -229,7 +229,7 @@ class macOSLifecycleMonitor: PlatformPlugin {
     }
 }
 
-extension SegmentDestination: macOSLifecycle {
+extension MeergoDestination: macOSLifecycle {
     public func applicationDidBecomeActive() {
         enterForeground()
     }

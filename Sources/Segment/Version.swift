@@ -1,6 +1,6 @@
 //
 //  Version.swift
-//  Segment
+//  Meergo
 //
 //  Created by Brandon Sneed on 12/3/20.
 //
@@ -15,4 +15,4 @@
 // Use release.sh's automation.
 
 // BREAKING.FEATURE.FIX
-internal let __segment_version = "1.9.2"
+internal let __meergo_version = "1.9.2"

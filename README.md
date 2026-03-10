@@ -76,6 +76,7 @@ Before contributing, please also see our [code of conduct](CODE_OF_CONDUCT.md).
 ```
 MIT License
 
+Copyright (c) 2026 Open2b
 Copyright (c) 2021 Segment
 
 Permission is hereby granted, free of charge, to any person obtaining a copy

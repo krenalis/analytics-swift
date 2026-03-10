@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Segment
+import Meergo
 
 @objc(SEGTestDestination)
 public class ObjCTestDestination: NSObject, ObjCPlugin, ObjCPluginShim {

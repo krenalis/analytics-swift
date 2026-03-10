@@ -1,6 +1,6 @@
 //
 //  HTTPClient.swift
-//  Segment-Tests
+//  Meergo-Tests
 //
 //  Created by Cody Garvin on 12/28/20.
 //

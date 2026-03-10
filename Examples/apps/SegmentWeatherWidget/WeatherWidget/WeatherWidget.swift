@@ -5,7 +5,7 @@
 //  Created by Alan Charles on 10/26/22.
 //
 
-import Segment
+import Meergo
 import WidgetKit
 import SwiftUI
 import Intents
@@ -68,10 +68,10 @@ struct WeatherWidget: Widget {
     let kind: String = "WeatherWidget"
     var analytics: Analytics?
     init() {
-        let configuration = Segment.Configuration(writeKey: "WRITE_KEY")
+        let configuration = Meergo.Configuration(writeKey: "WRITE_KEY")
 
         configuration.flushAt(1)
-        analytics = Segment.Analytics(configuration: configuration)
+        analytics = Meergo.Analytics(configuration: configuration)
         analytics?.track(name: "Widget Launched")
     }
     

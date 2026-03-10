@@ -1,6 +1,6 @@
 //
 //  macOSLifecycleEvents.swift
-//  Segment
+//  Meergo
 //
 //  Created by Cody on 4/20/22.
 //

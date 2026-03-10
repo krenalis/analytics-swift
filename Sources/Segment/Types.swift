@@ -1,6 +1,6 @@
 //
 //  Types.swift
-//  Segment
+//  Meergo
 //
 //  Created by Brandon Sneed on 12/1/20.
 //
@@ -179,7 +179,7 @@ extension RawEvent {
     public mutating func disableCloudIntegrations(exceptKeys: [String]? = nil) {
         guard let existing = integrations?.dictionaryValue else {
             // this shouldn't happen, might oughta log it.
-            Analytics.segmentLog(message: "Unable to get what should be a valid list of integrations from event.", kind: .error)
+            Analytics.meergoLog(message: "Unable to get what should be a valid list of integrations from event.", kind: .error)
             return
         }
         var new = [String: Any]()
@@ -198,7 +198,7 @@ extension RawEvent {
             integrations = try JSON(new)
         } catch {
             // this shouldn't happen, log it.
-            Analytics.segmentLog(message: "Unable to convert list of integrations to JSON. \(error)", kind: .error)
+            Analytics.meergoLog(message: "Unable to convert list of integrations to JSON. \(error)", kind: .error)
         }
     }
     
@@ -220,7 +220,7 @@ extension RawEvent {
             integrations = try JSON(new)
         } catch {
             // this shouldn't happen, log it.
-            Analytics.segmentLog(message: "Unable to convert list of integrations to JSON. \(error)", kind: .error)
+            Analytics.meergoLog(message: "Unable to convert list of integrations to JSON. \(error)", kind: .error)
         }
     }
     
@@ -232,7 +232,7 @@ extension RawEvent {
     public mutating func disableIntegration(key: String) {
         guard let existing = integrations?.dictionaryValue else {
             // this shouldn't happen, might oughta log it.
-            Analytics.segmentLog(message: "Unable to get what should be a valid list of integrations from event.", kind: .error)
+            Analytics.meergoLog(message: "Unable to get what should be a valid list of integrations from event.", kind: .error)
             return
         }
         // we don't really care what the value of this key was before, as
@@ -244,7 +244,7 @@ extension RawEvent {
             integrations = try JSON(new)
         } catch {
             // this shouldn't happen, log it.
-            Analytics.segmentLog(message: "Unable to convert list of integrations to JSON. \(error)", kind: .error)
+            Analytics.meergoLog(message: "Unable to convert list of integrations to JSON. \(error)", kind: .error)
         }
     }
     
@@ -256,7 +256,7 @@ extension RawEvent {
     public mutating func enableIntegration(key: String) {
         guard let existing = integrations?.dictionaryValue else {
             // this shouldn't happen, might oughta log it.
-            Analytics.segmentLog(message: "Unable to get what should be a valid list of integrations from event.", kind: .error)
+            Analytics.meergoLog(message: "Unable to get what should be a valid list of integrations from event.", kind: .error)
             return
         }
         
@@ -273,7 +273,7 @@ extension RawEvent {
             integrations = try JSON(new)
         } catch {
             // this shouldn't happen, log it.
-            Analytics.segmentLog(message: "Unable to convert list of integrations to JSON. \(error)", kind: .error)
+            Analytics.meergoLog(message: "Unable to convert list of integrations to JSON. \(error)", kind: .error)
         }
     }
     

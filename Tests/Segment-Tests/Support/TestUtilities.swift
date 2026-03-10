@@ -1,13 +1,13 @@
 //
 //  TestUtilities.swift
-//  Segment-Tests
+//  Meergo-Tests
 //
 //  Created by Brandon Sneed on 1/6/21.
 //
 
 import Foundation
 import XCTest
-@testable import Segment
+@testable import Meergo
 
 extension UUID{
     public func asUInt8Array() -> [UInt8]{
@@ -262,7 +262,7 @@ class BlockNetworkCalls: URLProtocol {
     override var cachedResponse: CachedURLResponse? { return nil }
 
     override func startLoading() {
-        client?.urlProtocol(self, didReceive: HTTPURLResponse(url: URL(string: "http://api.segment.com")!, statusCode: 200, httpVersion: nil, headerFields: ["blocked": "true"])!, cacheStoragePolicy: .notAllowed)
+        client?.urlProtocol(self, didReceive: HTTPURLResponse(url: URL(string: "http://test.example.com")!, statusCode: 200, httpVersion: nil, headerFields: ["blocked": "true"])!, cacheStoragePolicy: .notAllowed)
         client?.urlProtocolDidFinishLoading(self)
     }
 
@@ -285,7 +285,7 @@ class FailedNetworkCalls: URLProtocol {
     override var cachedResponse: CachedURLResponse? { return nil }
     
     override func startLoading() {
-        client?.urlProtocol(self, didReceive: HTTPURLResponse(url: URL(string: "http://api.segment.com")!, statusCode: 400, httpVersion: nil, headerFields: ["blocked": "true"])!, cacheStoragePolicy: .notAllowed)
+        client?.urlProtocol(self, didReceive: HTTPURLResponse(url: URL(string: "http://test.example.com")!, statusCode: 400, httpVersion: nil, headerFields: ["blocked": "true"])!, cacheStoragePolicy: .notAllowed)
         client?.urlProtocolDidFinishLoading(self)
     }
     

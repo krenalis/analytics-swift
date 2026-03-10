@@ -7,7 +7,7 @@
 
 import WatchKit
 import Foundation
-import Segment
+import Meergo
 
 
 class InterfaceController: WKInterfaceController {

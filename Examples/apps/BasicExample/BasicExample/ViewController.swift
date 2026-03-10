@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Segment
+import Meergo
 
 class ViewController: UIViewController {
     var analytics: Analytics? {
@@ -45,7 +45,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func identifyTapped(_ sender: Any) {
-        let traits = UserTraits(email: "sloth@segment.com", birthday: "09/01/2011", likesPho: true)
+        let traits = UserTraits(email: "sloth@meergo.com", birthday: "09/01/2011", likesPho: true)
         analytics?.identify(userId: "sloth", traits: traits)
     }
     

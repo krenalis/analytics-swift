@@ -7,12 +7,13 @@
 
 // NOTE: You can see this plugin in use in the DestinationsExample application.
 //
-// This plugin is NOT SUPPORTED by Segment.  It is here merely as an example,
+// This plugin is NOT SUPPORTED by Meergo.  It is here merely as an example,
 // and for your convenience should you find it useful.
 //
 
 // MIT License
 //
+// Copyright (c) 2026 Meergo
 // Copyright (c) 2021 Segment
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -34,7 +35,7 @@
 // SOFTWARE.
 
 import Foundation
-import Segment
+import Meergo
 //import ExampleModule // TODO: Import partner SDK module here
 
 /**
@@ -44,7 +45,7 @@ import Segment
 public class ExampleDestination: DestinationPlugin {
     public let timeline = Timeline()
     public let type = PluginType.destination
-    // TODO: Fill this out with your settings key that matches your destination in the Segment App
+    // TODO: Fill this out with your settings key that matches your destination in the Meergo App
     public let key = "Example"
     public weak var analytics: Analytics? = nil
     
@@ -130,7 +131,7 @@ private struct ExampleSettings: Codable {
 }
 
 // Rules for converting keys and values to the proper formats that bridge
-// from Segment to the Partner SDK. These are only examples.
+// from Meergo to the Partner SDK. These are only examples.
 private extension ExampleDestination {
     
     static var eventNameMap = ["ADD_TO_CART": "Product Added",

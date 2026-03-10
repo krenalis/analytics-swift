@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		46016C1326BB5BD700BCEE80 /* Segment in Frameworks */ = {isa = PBXBuildFile; productRef = 46016C1226BB5BD700BCEE80 /* Segment */; };
+		46016C1326BB5BD700BCEE80 /* Meergo in Frameworks */ = {isa = PBXBuildFile; productRef = 46016C1226BB5BD700BCEE80 /* Meergo */; };
 		9613E655265C2E350078A2BD /* SegmentSwiftUIExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9613E654265C2E350078A2BD /* SegmentSwiftUIExampleApp.swift */; };
 		9613E657265C2E350078A2BD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9613E656265C2E350078A2BD /* ContentView.swift */; };
 		9613E659265C2E360078A2BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9613E658265C2E360078A2BD /* Assets.xcassets */; };
@@ -28,7 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46016C1326BB5BD700BCEE80 /* Segment in Frameworks */,
+				46016C1326BB5BD700BCEE80 /* Meergo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,7 +96,7 @@
 			);
 			name = SegmentSwiftUIExample;
 			packageProductDependencies = (
-				46016C1226BB5BD700BCEE80 /* Segment */,
+				46016C1226BB5BD700BCEE80 /* Meergo */,
 			);
 			productName = SegmentSwiftUIExample;
 			productReference = 9613E651265C2E350078A2BD /* SegmentSwiftUIExample.app */;
@@ -291,7 +291,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Segment.SegmentSwiftUIExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Meergo.SegmentSwiftUIExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -312,7 +312,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Segment.SegmentSwiftUIExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Meergo.SegmentSwiftUIExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -343,9 +343,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		46016C1226BB5BD700BCEE80 /* Segment */ = {
+		46016C1226BB5BD700BCEE80 /* Meergo */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Segment;
+			productName = Meergo;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

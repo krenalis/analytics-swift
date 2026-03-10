@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Segment
+import Meergo
 
 struct Article {
     let title: String
@@ -17,19 +17,19 @@ struct Article {
 extension Article {
     
     private static let availableLibDocs = [
-        Article(title:"Analytics for iOS ", source: "https://segment.com/docs/connections/sources/catalog/libraries/mobile/ios/#analytics-for-ios", imageName: "Segment_logo"),
-        Article(title:"Analytics for Android", source: "https://segment.com/docs/connections/sources/catalog/libraries/mobile/android/", imageName: "Segment_logo"),
-        Article(title:"Analytics for React Native", source: "https://segment.com/docs/connections/sources/catalog/libraries/mobile/react-native/", imageName: "Segment_logo"),
-        Article(title:"Analytics.js", source: "https://segment.com/docs/connections/sources/catalog/libraries/website/javascript/", imageName: "Segment_logo"),
-        Article(title:"Analytics for Node ", source: "https://segment.com/docs/connections/sources/catalog/libraries/server/node/", imageName: "Segment_logo"),
+        Article(title:"Analytics for iOS ", source: "https://meergo.com/docs/connections/sources/catalog/libraries/mobile/ios/#analytics-for-ios", imageName: "Meergo_logo"),
+        Article(title:"Analytics for Android", source: "https://meergo.com/docs/connections/sources/catalog/libraries/mobile/android/", imageName: "Meergo_logo"),
+        Article(title:"Analytics for React Native", source: "https://meergo.com/docs/connections/sources/catalog/libraries/mobile/react-native/", imageName: "Meergo_logo"),
+        Article(title:"Analytics.js", source: "https://meergo.com/docs/connections/sources/catalog/libraries/website/javascript/", imageName: "Meergo_logo"),
+        Article(title:"Analytics for Node ", source: "https://meergo.com/docs/connections/sources/catalog/libraries/server/node/", imageName: "Meergo_logo"),
     ]
     
     private static let availableDestDocs = [
-        Article(title:"Appsflyer Destination", source: "https://segment.com/docs/connections/destinations/catalog/appsflyer/", imageName: "Segment_logo"),
-        Article(title:"Firebase Destination", source: "https://segment.com/docs/connections/destinations/catalog/firebase/", imageName: "Segment_logo"),
-        Article(title:"Facebook App Events Destination", source: "https://segment.com/docs/connections/destinations/catalog/facebook-app-events/", imageName: "Segment_logo"),
-        Article(title:"Mixpanel Destination", source: "https://segment.com/docs/connections/destinations/catalog/mixpanel/", imageName: "Segment_logo"),
-        Article(title:"Amplitude Destination", source: "https://segment.com/docs/connections/destinations/catalog/Amplitude/", imageName: "Segment_logo"),
+        Article(title:"Appsflyer Destination", source: "https://meergo.com/docs/connections/destinations/catalog/appsflyer/", imageName: "Meergo_logo"),
+        Article(title:"Firebase Destination", source: "https://meergo.com/docs/connections/destinations/catalog/firebase/", imageName: "Meergo_logo"),
+        Article(title:"Facebook App Events Destination", source: "https://meergo.com/docs/connections/destinations/catalog/facebook-app-events/", imageName: "Meergo_logo"),
+        Article(title:"Mixpanel Destination", source: "https://meergo.com/docs/connections/destinations/catalog/mixpanel/", imageName: "Meergo_logo"),
+        Article(title:"Amplitude Destination", source: "https://meergo.com/docs/connections/destinations/catalog/Amplitude/", imageName: "Meergo_logo"),
         
     ]
     

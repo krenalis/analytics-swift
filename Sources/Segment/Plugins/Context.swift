@@ -1,6 +1,6 @@
 //
 //  Context.swift
-//  Segment
+//  Meergo
 //
 //  Created by Brandon Sneed on 2/23/21.
 //
@@ -58,7 +58,7 @@ public class Context: PlatformPlugin {
         // library name
         staticContext["library"] = [
             "name": "analytics-swift",
-            "version": __segment_version,
+            "version": __meergo_version,
         ]
         
         // app information

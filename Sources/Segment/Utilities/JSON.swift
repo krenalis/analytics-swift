@@ -1,6 +1,6 @@
 //
 //  JSON.swift
-//  Segment-Tests
+//  Meergo-Tests
 //
 //  Created by Brandon Sneed on 12/2/20.
 //
@@ -451,7 +451,7 @@ extension JSON {
                             do {
                                 result = try JSONDecoder.default.decode(T.self, from: jsonData)
                             } catch {
-                                Analytics.segmentLog(message: "Unable to decode object (\(keyPath)) to a Codable: \(error)", kind: .error)
+                                Analytics.meergoLog(message: "Unable to decode object (\(keyPath)) to a Codable: \(error)", kind: .error)
                             }
                         }
                         if result == nil {

@@ -1,6 +1,6 @@
 # analytics-swift e2e-cli
 
-E2E test CLI for the [analytics-swift](https://github.com/segmentio/analytics-swift) SDK. Accepts a JSON input describing events and SDK configuration, sends them through the real SDK, and outputs results as JSON.
+E2E test CLI for the [analytics-swift](https://github.com/meergo/analytics-swift) SDK. Accepts a JSON input describing events and SDK configuration, sends them through the real SDK, and outputs results as JSON.
 
 Defined as a target in the Swift package and built with Swift Package Manager.
 

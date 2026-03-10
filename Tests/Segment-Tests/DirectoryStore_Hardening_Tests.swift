@@ -1,6 +1,6 @@
 //
 //  DirectoryStore_Hardening_Tests.swift
-//  Segment-Tests
+//  Meergo-Tests
 //
 //  Tests for crash-recovery hardening in DirectoryStore.
 //
@@ -14,7 +14,7 @@
 //
 
 import XCTest
-@testable import Segment
+@testable import Meergo
 
 class DirectoryStore_Hardening_Tests: XCTestCase {
 
@@ -24,12 +24,12 @@ class DirectoryStore_Hardening_Tests: XCTestCase {
     override func setUpWithError() throws {
         Telemetry.shared.enable = false
         storageURL = URL(fileURLWithPath: NSTemporaryDirectory())
-            .appendingPathComponent("segment-hardening-tests")
+            .appendingPathComponent("meergo-hardening-tests")
         try FileManager.default.createDirectory(at: storageURL, withIntermediateDirectories: true)
         store = DirectoryStore(configuration: DirectoryStore.Configuration(
             writeKey: "hardening-test",
             storageLocation: storageURL,
-            baseFilename: "segment-events",
+            baseFilename: "meergo-events",
             maxFileSize: 475000,
             indexKey: "hardening.events"
         ))
@@ -37,8 +37,8 @@ class DirectoryStore_Hardening_Tests: XCTestCase {
 
     override func tearDownWithError() throws {
         try? FileManager.default.removeItem(at: storageURL)
-        UserDefaults(suiteName: "com.segment.storage.hardening-test")?
-            .removePersistentDomain(forName: "com.segment.storage.hardening-test")
+        UserDefaults(suiteName: "com.meergo.storage.hardening-test")?
+            .removePersistentDomain(forName: "com.meergo.storage.hardening-test")
     }
 
     // MARK: - Crash Recovery
@@ -48,7 +48,7 @@ class DirectoryStore_Hardening_Tests: XCTestCase {
     /// the same file and write events after the closing bracket, corrupting the batch.
     func testCrashRecoverySkipsFinalizedFile() throws {
         // Pre-write a finalized file at index 0 — simulates the crash scenario.
-        let finalizedFileURL = storageURL.appendingPathComponent("0-segment-events")
+        let finalizedFileURL = storageURL.appendingPathComponent("0-meergo-events")
         let finalizedContent = "{ \"batch\": [\n{\"type\":\"track\",\"event\":\"CrashEvent\",\"messageId\":\"DEAD-BEEF\"}\n],\"sentAt\":\"2026-01-01T00:00:00.000Z\",\"writeKey\":\"hardening-test\"}"
         try finalizedContent.write(to: finalizedFileURL, atomically: true, encoding: .utf8)
 
@@ -87,7 +87,7 @@ class DirectoryStore_Hardening_Tests: XCTestCase {
     /// resume appending to it, not abandon it.
     func testCrashRecoveryResumesUnfinishedFile() throws {
         // Write a partial file at index 0 — no sentAt footer means not finalized.
-        let partialFileURL = storageURL.appendingPathComponent("0-segment-events")
+        let partialFileURL = storageURL.appendingPathComponent("0-meergo-events")
         let partialContent = "{ \"batch\": [\n{\"type\":\"track\",\"event\":\"PartialEvent\",\"messageId\":\"PART-1\"}"
         try partialContent.write(to: partialFileURL, atomically: true, encoding: .utf8)
 

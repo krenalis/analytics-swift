@@ -1,6 +1,6 @@
 import XCTest
 
-@testable import Segment
+@testable import Meergo
 
 final class Analytics_Tests: XCTestCase {
     override func setUpWithError() throws {
@@ -61,7 +61,7 @@ final class Analytics_Tests: XCTestCase {
 
     func testDestinationInitialUpdateOnlyOnce() {
         // need to clear settings for this one.
-        UserDefaults.standard.removePersistentDomain(forName: "com.segment.storage.test")
+        UserDefaults.standard.removePersistentDomain(forName: "com.meergo.storage.test")
 
         let expectation = XCTestExpectation(description: "MyDestination Expectation")
         let myDestination = MyDestination {
@@ -105,7 +105,7 @@ final class Analytics_Tests: XCTestCase {
 
     func testDestinationEnabled() {
         // need to clear settings for this one.
-        UserDefaults.standard.removePersistentDomain(forName: "com.segment.storage.test")
+        UserDefaults.standard.removePersistentDomain(forName: "com.meergo.storage.test")
 
         let expectation = XCTestExpectation(description: "MyDestination Expectation")
         let myDestination = MyDestination {
@@ -140,7 +140,7 @@ final class Analytics_Tests: XCTestCase {
     /*#if !os(Linux) && !os(Windows)
         func testDestinationNotEnabled() {
             // need to clear settings for this one.
-            UserDefaults.standard.removePersistentDomain(forName: "com.segment.storage.test")
+            UserDefaults.standard.removePersistentDomain(forName: "com.meergo.storage.test")
 
             let expectation = XCTestExpectation(description: "MyDestination Expectation")
             let myDestination = MyDestination(disabled: true) {
@@ -636,15 +636,15 @@ final class Analytics_Tests: XCTestCase {
         let mixpanel = AnyDestination(key: "Mixpanel")
         let outputReader = OutputReaderPlugin()
 
-        // we want the output reader on the segment plugin
+        // we want the output reader on the meergo plugin
         // cuz that's the only place the metadata is getting added.
-        let segmentDest = analytics.find(pluginType: SegmentDestination.self)
-        segmentDest?.add(plugin: outputReader)
+        let meergoDest = analytics.find(pluginType: MeergoDestination.self)
+        meergoDest?.add(plugin: outputReader)
 
         analytics.add(plugin: mixpanel)
         var settings = Settings(writeKey: "123")
         let integrations = try? JSON([
-            "Segment.io": JSON([
+            "Meergo": JSON([
                 "unbundledIntegrations":
                     [
                         "Customer.io",
@@ -674,15 +674,15 @@ final class Analytics_Tests: XCTestCase {
         let mixpanel = AnyDestination(key: "Mixpanel")
         let outputReader = OutputReaderPlugin()
 
-        // we want the output reader on the segment plugin
+        // we want the output reader on the meergo plugin
         // cuz that's the only place the metadata is getting added.
-        let segmentDest = analytics.find(pluginType: SegmentDestination.self)
-        segmentDest?.add(plugin: outputReader)
+        let meergoDest = analytics.find(pluginType: MeergoDestination.self)
+        meergoDest?.add(plugin: outputReader)
 
         analytics.add(plugin: mixpanel)
         var settings = Settings(writeKey: "123")
         let integrations = try? JSON([
-            "Segment.io": JSON([
+            "Meergo": JSON([
                 "unbundledIntegrations":
                     [
                         "Customer.io"
@@ -761,8 +761,8 @@ final class Analytics_Tests: XCTestCase {
 
         analytics.add(enrichment: sourceEnrichment)
 
-        let segment = analytics.find(pluginType: SegmentDestination.self)
-        segment?.add(enrichment: destEnrichment)
+        let meergo = analytics.find(pluginType: MeergoDestination.self)
+        meergo?.add(enrichment: destEnrichment)
 
         waitUntilStarted(analytics: analytics)
 
@@ -925,7 +925,7 @@ final class Analytics_Tests: XCTestCase {
 
     // Linux doesn't know what URLProtocol is and on watchOS it somehow works differently and isn't hit.
     #if !os(Linux) && !os(watchOS) && !os(Windows)
-        func testFailedSegmentResponse() throws {
+        func testFailedMeergoResponse() throws {
             //register our network blocker (returns 400 response)
             guard URLProtocol.registerClass(FailedNetworkCalls.self) else {
                 XCTFail()
@@ -937,7 +937,7 @@ final class Analytics_Tests: XCTestCase {
             waitUntilStarted(analytics: analytics)
 
             //set the httpClient to use our blocker session
-            let segment = analytics.find(pluginType: SegmentDestination.self)
+            let meergo = analytics.find(pluginType: MeergoDestination.self)
             let configuration = URLSessionConfiguration.ephemeral
             configuration.allowsCellularAccess = true
             configuration.timeoutIntervalForRequest = 30
@@ -953,7 +953,7 @@ final class Analytics_Tests: XCTestCase {
             let blockSession = URLSession(
                 configuration: configuration, delegate: nil, delegateQueue: nil)
 
-            segment?.httpClient?.session = blockSession
+            meergo?.httpClient?.session = blockSession
 
             analytics.track(name: "test track", properties: ["Malformed Paylod": "My Failed Prop"])
 
@@ -987,7 +987,7 @@ final class Analytics_Tests: XCTestCase {
         }
 
         // need to clear settings for this one.
-        UserDefaults.standard.removePersistentDomain(forName: "com.segment.storage.anonIdGenerator")
+        UserDefaults.standard.removePersistentDomain(forName: "com.meergo.storage.anonIdGenerator")
 
         let anonIdGenerator = MyAnonIdGenerator()
         var analytics: Analytics? = Analytics(

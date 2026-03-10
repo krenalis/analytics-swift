@@ -9,6 +9,7 @@
 
 // MIT License
 //
+// Copyright (c) 2026 Meergo
 // Copyright (c) 2021 Segment
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -31,7 +32,7 @@
 
 import Foundation
 import UIKit
-import Segment
+import Meergo
 
 class QueryAlertController: UIAlertController {
     // we already conform to UIKitScreenTrackable so override

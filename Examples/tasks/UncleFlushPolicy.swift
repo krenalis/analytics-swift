@@ -1,6 +1,6 @@
 //
 //  UncleFlushPolicy.swift
-//  Segment
+//  Meergo
 //
 //  Created by Brandon Sneed on 9/17/24.
 //

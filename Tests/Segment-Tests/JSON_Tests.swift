@@ -1,13 +1,13 @@
 //
 //  JSONTests.swift
-//  Segment-Tests
+//  Meergo-Tests
 //
 //  Created by Brandon Sneed on 12/1/20.
 //
 
 import XCTest
 import JSONSafeEncoding
-@testable import Segment
+@testable import Meergo
 
 struct Personal: Codable {
     let preferences: [String]

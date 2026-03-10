@@ -20,22 +20,22 @@ extension Analytics {
         var string: String {
             switch self {
             case .error:
-                return "SEG_ERROR: "
+                return "MRG_ERROR: "
             case .warning:
-                return "SEG_WARNING: "
+                return "MRG_WARNING: "
             case .debug:
-                return "SEG_DEBUG: "
+                return "MRG_DEBUG: "
             case .none:
-                return "SEG_INFO: "
+                return "MRG_INFO: "
             }
         }
     }
     
     public func log(message: String) {
-        Self.segmentLog(message: message, kind: .none)
+        Self.meergoLog(message: message, kind: .none)
     }
     
-    static public func segmentLog(message: String, kind: LogKind) {
+    static public func meergoLog(message: String, kind: LogKind) {
         #if DEBUG
         if Self.debugLogsEnabled {
             print("\(kind)\(message)")

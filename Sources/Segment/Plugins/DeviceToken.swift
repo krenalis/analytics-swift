@@ -1,6 +1,6 @@
 //
 //  DeviceToken.swift
-//  Segment
+//  Meergo
 //
 //  Created by Brandon Sneed on 3/24/21.
 //

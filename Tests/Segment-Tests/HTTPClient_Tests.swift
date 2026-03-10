@@ -1,6 +1,6 @@
 //
 //  HTTPClientTests.swift
-//  Segment-Tests
+//  Meergo-Tests
 //
 //  Created by Brandon Sneed on 1/21/21.
 //
@@ -8,7 +8,7 @@
 #if !os(Linux) && !os(Windows)
 
 import XCTest
-@testable import Segment
+@testable import Meergo
 
 class HTTPClientTests: XCTestCase {
 
@@ -56,10 +56,10 @@ class HTTPClientTests: XCTestCase {
         )
         
         // reach in and set it, would be the same as the default ultimately
-        let segment = analytics.find(pluginType: SegmentDestination.self)
-        XCTAssertTrue(!(segment?.httpClient?.session is RestrictedHTTPSession))
-        XCTAssertTrue(segment?.httpClient?.session is URLSession)
-        segment?.httpClient?.session = RestrictedHTTPSession()
+        let meergo = analytics.find(pluginType: MeergoDestination.self)
+        XCTAssertTrue(!(meergo?.httpClient?.session is RestrictedHTTPSession))
+        XCTAssertTrue(meergo?.httpClient?.session is URLSession)
+        meergo?.httpClient?.session = RestrictedHTTPSession()
         
         waitUntilStarted(analytics: analytics)
         

@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import Segment
+@testable import Meergo
 
 final class CompletionGroup_Tests: XCTestCase {
 
@@ -24,8 +24,8 @@ final class CompletionGroup_Tests: XCTestCase {
             RunLoop.main.run()
         }
         
-        //let flushQueue = DispatchQueue(label: "com.segment.flush")
-        let flushQueue = DispatchQueue(label: "com.segment.flush", attributes: .concurrent)
+        //let flushQueue = DispatchQueue(label: "com.meergo.flush")
+        let flushQueue = DispatchQueue(label: "com.meergo.flush", attributes: .concurrent)
         
         let group = CompletionGroup(queue: flushQueue)
         

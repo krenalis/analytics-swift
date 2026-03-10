@@ -1,6 +1,6 @@
 //
 //  Atomic.swift
-//  Segment
+//  Meergo
 //
 //  Created by Brandon Sneed on 4/8/21.
 //

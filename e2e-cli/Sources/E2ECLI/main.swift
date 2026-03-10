@@ -1,5 +1,5 @@
 import Foundation
-import Segment
+import Meergo
 
 // MARK: - Input/Output Models
 

@@ -4,11 +4,12 @@
 //  Created by Alan Charles on 12/7/22.
 //
 
-// This plugin is NOT SUPPORTED by Segment.  It is here merely as an example,
+// This plugin is NOT SUPPORTED by Meergo.  It is here merely as an example,
 // and for your convenience should you find it useful.
 
 // MIT License
 //
+// Copyright (c) 2026 Meergo
 // Copyright (c) 2021 Segment
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,7 +31,7 @@
 // SOFTWARE.
 
 import Foundation
-import Segment
+import Meergo
 
 class InjectTraits: Plugin {
     let type = PluginType.enrichment

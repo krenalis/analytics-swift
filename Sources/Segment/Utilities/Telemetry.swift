@@ -26,7 +26,7 @@ func logError(_ error: Error) {
     Analytics.reportInternalError(error)
 }
 
-/// A class for sending telemetry data to Segment.
+/// A class for sending telemetry data to Meergo.
 /// This system is used to gather usage and error data from the SDK for the purpose of improving the SDK.
 /// It can be disabled at any time by setting Telemetry.shared.enable to false.
 /// Errors are sent with a write key, which can be disabled by setting Telemetry.shared.sendWriteKeyOnError to false.
@@ -94,7 +94,7 @@ public class Telemetry: Subscriber {
     private var updateQueue = DispatchQueue(label: "updateQueue")
     private var telemetryTimer: QueueTimer?
 
-    /// Starts the Telemetry send loop. Requires both `enable` to be set and a configuration to be retrieved from Segment.
+    /// Starts the Telemetry send loop. Requires both `enable` to be set and a configuration to be retrieved from Meergo.
     func start() {
         guard enable, !started, sampleRate > 0.0 && sampleRate <= 1.0 else { return }
         _started.set(true)
@@ -240,7 +240,7 @@ public class Telemetry: Subscriber {
         return [
             "os": "\(osVersion)",
             "library": "analytics.swift",
-            "library_version": __segment_version
+            "library_version": __meergo_version
         ]
     }
 

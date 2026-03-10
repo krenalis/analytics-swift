@@ -1,6 +1,6 @@
 //
 //  ObjectPath.swift
-//  Segment
+//  Meergo
 //
 //  Created by Brandon Sneed on 3/19/21.
 //

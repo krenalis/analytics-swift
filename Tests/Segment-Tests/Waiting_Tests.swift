@@ -1,13 +1,13 @@
 //
 //  Waiting_Tests.swift
-//  Segment
+//  Meergo
 //
 //  Created by Brandon Sneed on 7/12/25.
 //
 
 import XCTest
 import Sovran
-@testable import Segment
+@testable import Meergo
 
 class ExampleWaitingPlugin: EventPlugin, WaitingPlugin {
     let type: PluginType

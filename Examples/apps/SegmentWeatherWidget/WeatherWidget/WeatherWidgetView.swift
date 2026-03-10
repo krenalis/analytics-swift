@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Segment
+import Meergo
 
 struct WeatherView: View {
     let weather: Weather

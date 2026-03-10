@@ -7,11 +7,12 @@
 
 // NOTE: You can see this plugin in use in the SwiftUIKitExample application.
 //
-// This plugin is NOT SUPPORTED by Segment.  It is here merely as an example,
+// This plugin is NOT SUPPORTED by Meergo.  It is here merely as an example,
 // and for your convenience should you find it useful.
 
 // MIT License
 //
+// Copyright (c) 2026 Meergo
 // Copyright (c) 2021 Segment
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -34,7 +35,7 @@
 
 import Foundation
 import UIKit
-import Segment
+import Meergo
 import AdSupport
 import AppTrackingTransparency
 

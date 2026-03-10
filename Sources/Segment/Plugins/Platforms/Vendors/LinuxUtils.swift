@@ -1,6 +1,6 @@
 //
 //  LinuxUtils.swift
-//  Segment
+//  Meergo
 //
 //  Created by Brandon Sneed on 2/24/21.
 //

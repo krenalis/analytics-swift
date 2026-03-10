@@ -6,7 +6,7 @@
 //
 
 import Cocoa
-import Segment
+import Meergo
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
