@@ -15,4 +15,4 @@
 // Use release.sh's automation.
 
 // BREAKING.FEATURE.FIX
-internal let __meergo_version = "1.9.2"
+internal let __meergo_version = "0.0.1"
