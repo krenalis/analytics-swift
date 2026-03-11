@@ -20,9 +20,6 @@ public class StartupQueue: Plugin, Subscriber {
             analytics?.store.subscribe(self) { [weak self] (state: System) in
                 self?.runningUpdate(state: state)
             }
-            if let store = analytics?.store {
-                Telemetry.shared.subscribe(store)
-            }
         }
     }
     

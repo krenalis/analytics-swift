@@ -3,7 +3,6 @@ import XCTest
 
 final class Atomic_Tests: XCTestCase {
     override func setUpWithError() throws {
-        Telemetry.shared.enable = false
     }
 
     func testAtomicIncrement() {

@@ -65,27 +65,10 @@ public class Timeline {
 internal class Mediator {
     internal func add(plugin: Plugin) {
         plugins.append(plugin)
-        Telemetry.shared.increment(metric: Telemetry.INTEGRATION_METRIC) {
-            (_ it: inout [String: String]) in
-            it["message"] = "added"
-            if let plugin = plugin as? DestinationPlugin, !plugin.key.isEmpty {
-                it["plugin"] = "\(plugin.type)-\(plugin.key)"
-            } else {
-                it["plugin"] = "\(plugin.type)-\(String(describing: type(of: plugin)))"
-            }
-        }
     }
     
     internal func remove(plugin: Plugin) {
         plugins.removeAll { (storedPlugin) -> Bool in
-            Telemetry.shared.increment(metric: Telemetry.INTEGRATION_METRIC) {
-                (_ it: inout [String: String]) in
-                it["message"] = "removed"
-                if let plugin = plugin as? DestinationPlugin, !plugin.key.isEmpty {
-                    it["plugin"] = "\(plugin.type)-\(plugin.key)"
-                } else {
-                    it["plugin"] = "\(plugin.type)-\(String(describing: type(of: plugin)))"
-                }            }
             return plugin === storedPlugin
         }
     }
@@ -103,14 +86,6 @@ internal class Mediator {
                 } else {
                     result = plugin.execute(event: r)
                 }
-                Telemetry.shared.increment(metric: Telemetry.INTEGRATION_METRIC) {
-                    (_ it: inout [String: String]) in
-                    it["message"] = "event-\(r.type ?? "unknown")"
-                    if let plugin = plugin as? DestinationPlugin, !plugin.key.isEmpty {
-                        it["plugin"] = "\(plugin.type)-\(plugin.key)"
-                    } else {
-                        it["plugin"] = "\(plugin.type)-\(String(describing: type(of: plugin)))"
-                    }                }
             }
         }
         

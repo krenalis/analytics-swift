@@ -91,13 +91,6 @@ public class Analytics {
         // Get everything running
         platformStartup()
 
-        Telemetry.shared.increment(metric: Telemetry.INVOKE_METRIC) {it in 
-            it["message"] = "configured"
-            it["endpoint"] = configuration.values.endpoint
-            it["flush"] =
-                "at:\(configuration.values.flushAt) int:\(configuration.values.flushInterval) pol:\(configuration.values.flushPolicies.count)"
-            it["config"] = "seg:\(configuration.values.autoAddMeergoDestination) ua:\(configuration.values.userAgent ?? "N/A")"
-        }
     }
     
     deinit {

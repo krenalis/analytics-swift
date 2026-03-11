@@ -22,7 +22,6 @@ class DirectoryStore_Hardening_Tests: XCTestCase {
     var store: DirectoryStore!
 
     override func setUpWithError() throws {
-        Telemetry.shared.enable = false
         storageURL = URL(fileURLWithPath: NSTemporaryDirectory())
             .appendingPathComponent("meergo-hardening-tests")
         try FileManager.default.createDirectory(at: storageURL, withIntermediateDirectories: true)

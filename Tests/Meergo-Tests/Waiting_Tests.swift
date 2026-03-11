@@ -80,7 +80,6 @@ class MockDestinationPlugin: DestinationPlugin {
 
 final class Waiting_Tests: XCTestCase, Subscriber {
     override func setUpWithError() throws {
-        Telemetry.shared.enable = false
     }
     
     func testBasicWaitingPlugin() {
