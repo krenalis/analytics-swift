@@ -1,76 +1,74 @@
-# Analytics-Swift
-![](https://github.com/segmentio/analytics-swift/actions/workflows/swift.yml/badge.svg)
-![](https://img.shields.io/github/license/segmentio/analytics-swift)
+# Meergo Swift SDK (🚧 work in progress)
 
-### 🎉 Flagship 🎉
-This library is one of Segment’s most popular Flagship libraries. It is actively maintained by Segment, benefitting from new feature releases and ongoing support.
+---
 
-The hassle-free way to add Segment analytics to your Swift app (iOS/tvOS/visionOS/watchOS/macOS/Linux/iPadOS). Analytics helps you measure your users, product, and business. It unlocks insights into your app's funnel, core business metrics, and whether you have product-market fit.
+## 🚨 Important note. 🚧 Please note that this SDK is still under development, has not been released, and is therefore not yet usable. Therefore, the commands and documentation provided here may not work or may be changed without notice. Stay tuned for updates. 👀
 
-## How to get started
-1. **Collect analytics data** from your app(s).
-  - The top 200 Segment companies collect data from 5+ source types (web, mobile, server, CRM, etc.).
-2. **Send the data to analytics tools** (for example, Google Analytics, Amplitude, Mixpanel).
-  - Over 250+ Segment companies send data to eight categories of destinations such as analytics tools, warehouses, email marketing and remarketing systems, session recording, and more.
-3. **Explore your data** by creating metrics (for example, new signups, retention cohorts, and revenue generation).
-  - The best Segment companies use retention cohorts to measure product market fit. Netflix has 70% paid retention after 12 months, 30% after 7 years.
+---
 
-[Segment](https://segment.com) collects analytics data and allows you to send it to more than 250 apps (such as Google Analytics, Mixpanel, Optimizely, Facebook Ads, Slack, Sentry) just by flipping a switch. You only need one Segment code snippet, and you can turn integrations on and off at will, with no additional code. [Sign up with Segment today](https://app.segment.com/signup).
+The Meergo Swift SDK lets you send customer event data from your Apple applications (iOS, macOS, tvOS, watchOS, visionOS) to your specified destinations.
 
-### Why?
-1. **Power all your analytics apps with the same data**. Instead of writing code to integrate all of your tools individually, send data to Segment, once.
+## SDK setup requirements
 
-2. **Install tracking for the last time**. We're the last integration you'll ever need to write. You only need to instrument Segment once. Reduce all of your tracking code and advertising tags into a single set of API calls.
+- Set up a Meergo account.
+- Set up an Apple source in the dashboard.
+- Copy the write key and the endpoint.
 
-3. **Send data from anywhere**. Send Segment data from any device, and we'll transform and send it on to any tool.
+## Installation
 
-4. **Query your data in SQL**. Slice, dice, and analyze your data in detail with Segment SQL. We'll transform and load your customer behavioral data directly from your apps into Amazon Redshift, Google BigQuery, or Postgres. Save weeks of engineering time by not having to invent your own data warehouse and ETL pipeline.
+To integrate the Swift SDK inside your application, add the package dependency to your Xcode project or `Package.swift`. Make sure to replace `<latest_version>` with the latest version of the SDK.
 
-   For example, you can capture data on any app:
-    ```swift
-    struct TrackProperties: Codable {
-        let price: Double
-    }
+In your `Package.swift`, add the following dependency:
 
-    // ...
+```swift
+dependencies: [
+    .package(url: "https://github.com/meergo/analytics-swift", from: "<latest_version>")
+]
+```
 
-    analytics.track(name: "Order Completed", properties: TrackProperties(price: 99.84))
-    ```
-   Then, query the resulting data in SQL:
-    ```sql
-    select * from app.order_completed
-    order by price desc
-    ```
+Then add `Meergo` as a dependency of your target:
 
-## Supported Device Mode Destinations
+```swift
+.target(
+    name: "YourApp",
+    dependencies: [
+        .product(name: "Meergo", package: "analytics-swift")
+    ]
+)
+```
 
-| Partner | Package |
-| --- | --- |
-| Amplitude | https://github.com/segment-integrations/analytics-swift-amplitude |
-| AppsFlyer | https://github.com/segment-integrations/analytics-swift-appsflyer |
-| Braze    | https://github.com/segment-integrations/analytics-swift-braze |
-| Facebook | https://github.com/segment-integrations/analytics-swift-facebook-app-events |
-| Firebase | https://github.com/segment-integrations/analytics-swift-firebase |
-| Mixpanel | https://github.com/segment-integrations/analytics-swift-mixpanel |
-| Survicate | https://github.com/Survicate/analytics-swift-survicate |
+Or, in Xcode, go to **File → Add Package Dependencies...** and enter the repository URL.
 
-## Documentation
+## Using the SDK
 
-You can find usage documentation at [Segment Docs, Analytics-Swift](https://segment.com/docs/connections/sources/catalog/libraries/mobile/apple/).
+```swift
+import Meergo
 
-Explore more via the [example projects](Examples) which showcase analytics instrumentation on different platforms/languages and usage of plugins. These projects contain sample [plugins](Examples/other_plugins) and [destination plugins](Examples/destination_plugins).
+let configuration = Configuration(writeKey: "YOUR_WRITE_KEY")
+    .endpoint("YOUR_ENDPOINT")
+    .setTrackedApplicationLifecycleEvents(.all)
+    .flushAt(3)
+    .flushInterval(10)
+    // ...other config options
 
-## Contributing
+let analytics = Analytics(configuration: configuration)
 
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+analytics.track(name: "Workout completed", properties: [
+    "workout_type": "Cardio",
+    "duration_minutes": 45,
+    "calories_burned": 380,
+    "device": "Smartwatch"
+])
+```
 
-## Integrating with Segment
+## Sending events
 
-Interested in integrating your service with us? Check out our [Partners page](https://segment.com/partners/) for more details.
+Refer to the Meergo events documentation for more information on the supported event types.
 
-## Code of Conduct
+## Compatibility
 
-Before contributing, please also see our [code of conduct](CODE_OF_CONDUCT.md).
+* The SDK requires **Swift 5.9** or higher.
+* Supported platforms: **iOS 13.0+**, **macOS 10.15+**, **tvOS 13.0+**, **watchOS 7.1+**, **visionOS 1.0+**.
 
 ## License
 ```
