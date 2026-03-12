@@ -15,7 +15,7 @@ extension Analytics: Subscriber {
 
         // add meergo destination plugin unless
         // asked not to via configuration.
-        if configuration.values.autoAddMeergoDestination {
+        if configuration.values.autoAddMeergoDestination && configuration.values.autoAddSegmentDestination {
             let meergoDestination = MeergoDestination()
             meergoDestination.analytics = self
             add(plugin: meergoDestination)

@@ -109,6 +109,19 @@ public class ObjCConfiguration: NSObject {
         }
     }
 
+    /// Enable/Disable the automatic adding of Meergo as a destination.
+    /// Same as `autoAddMeergoDestination`. This remains for compatibility
+    /// with Segment SDK. The default value is `true`.
+    @objc
+    public var autoAddSegmentDestination: Bool {
+        get {
+            return configuration.values.autoAddSegmentDestination
+        }
+        set(value) {
+            configuration.autoAddSegmentDestination(value)
+        }
+    }
+
     /// Sets a custom endpoint for event uploads and settings retrieval.
     /// The default value is `test.example.com/v1`.
     @objc

@@ -114,6 +114,7 @@ public class Configuration {
         var flushInterval: TimeInterval = 30
         var defaultSettings: Settings? = nil
         var autoAddMeergoDestination: Bool = true
+        var autoAddSegmentDestination: Bool = true
         var endpoint: String = HTTPClient.getDefaultEndpoint()
         var requestFactory: ((URLRequest) -> URLRequest)? = nil
         var errorHandler: ((Error) -> Void)? = nil
@@ -239,6 +240,18 @@ extension Configuration {
     @discardableResult
     public func autoAddMeergoDestination(_ value: Bool) -> Configuration {
         values.autoAddMeergoDestination = value
+        return self
+    }
+
+    /// Enable/Disable the automatic adding of Meergo as a destination.
+    /// Same as `autoAddMeergoDestination`. This remains for compatibility
+    /// with Segment SDK. The default value is `true`.
+    ///
+    /// - Parameter value: true/false
+    /// - Returns: The current Configuration.
+    @discardableResult
+    public func autoAddSegmentDestination(_ value: Bool) -> Configuration {
+        values.autoAddSegmentDestination = value
         return self
     }
 
