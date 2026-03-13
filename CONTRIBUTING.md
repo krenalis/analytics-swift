@@ -1,30 +1,59 @@
 # Contributing
 
-We want this community to be friendly and respectful to each other. Please follow it in all your interactions with the project.
+This document provides information useful for contributing to the Meergo Swift SDK.
 
+## Prerequisites
 
-### Commit message convention
+Before you begin, make sure you have [Xcode 26](https://developer.apple.com/xcode/) or later installed.
 
-We follow the [conventional commits specification](https://www.conventionalcommits.org/en) for our commit messages:
+To verify your Xcode version:
 
-- `fix`: bug fixes, e.g. fix crash due to deprecated method.
-- `feat`: new features, e.g. add new method to the module.
-- `refactor`: code refactor, e.g. migrate from class components to hooks.
-- `docs`: changes into documentation, e.g. add usage example for the module..
-- `test`: adding or updating tests, eg add integration tests using detox.
-- `chore`: tooling changes, e.g. change CI config.
+```bash
+xcodebuild -version
+```
 
-Our pre-commit hooks verify that your commit message matches this format when committing.
+## Testing the SDK
 
+Tests can be run locally on macOS:
 
-### Sending a pull request
+**macOS (Swift Package Manager):**
 
-> **Working on your first pull request?** You can learn how from this _free_ series: [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github).
+```bash
+swift test
+```
 
-When you're sending a pull request:
+**iOS:**
 
-- Prefer small pull requests focused on one change.
-- Verify that linters and tests are passing.
-- Review the documentation to make sure it looks good.
-- Follow the pull request template when opening a pull request.
-- For pull requests that change the API or implementation, discuss with maintainers first by opening an issue.
+```bash
+xcodebuild -scheme Meergo test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 17'
+```
+
+**tvOS:**
+
+```bash
+xcodebuild -scheme Meergo test -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV'
+```
+
+**watchOS:**
+
+```bash
+xcodebuild -scheme Meergo test -sdk watchsimulator -destination 'platform=watchOS Simulator,name=Apple Watch Ultra 3 (49mm)'
+```
+
+**visionOS:**
+
+```bash
+xcodebuild -scheme Meergo test -destination 'platform=visionOS Simulator,OS=26.0,name=Apple Vision Pro'
+```
+
+## Running the sample application
+
+To run the sample application locally:
+
+1. Open `Examples/apps/BasicExample` in Xcode.
+
+2. Open `AppDelegate.swift` and replace `WRITE_KEY` and `ENDPOINT` with the values from your Meergo Apple source.
+
+3. Build and run the application from Xcode on an iOS Simulator.
+
+4. Interact with the buttons inside the application running in the simulator. You should see new logged events in the event debugger of the Meergo Apple source.
