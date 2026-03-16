@@ -19,23 +19,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    SEGConfiguration *config = [[SEGConfiguration alloc] initWithWriteKey:@"<WRITE KEY>"];
+    MRGConfiguration *config = [[MRGConfiguration alloc] initWithWriteKey:@"<WRITE KEY>"];
     config.trackApplicationLifecycleEvents = YES;
     config.flushAt = 1;
     
-    _analytics = [[SEGAnalytics alloc] initWithConfiguration: config];
+    _analytics = [[MRGAnalytics alloc] initWithConfiguration: config];
     
     [self.analytics track:@"test"];
     [self.analytics track:@"testProps" properties:@{@"email": @"blah@blah.com"}];
     
     [self.analytics flush];
     
-    SEGTestDestination *testDestination = [[SEGTestDestination alloc] init];
+    MRGTestDestination *testDestination = [[MRGTestDestination alloc] init];
     [self.analytics addPlugin:testDestination];
     
-    SEGBlockPlugin *customizeAllTrackCalls = [[SEGBlockPlugin alloc] initWithBlock:^id<SEGRawEvent> _Nullable(id<SEGRawEvent> _Nullable event) {
-        if ([event isKindOfClass: [SEGTrackEvent class]]) {
-            SEGTrackEvent *track = (SEGTrackEvent *)event;
+    MRGBlockPlugin *customizeAllTrackCalls = [[MRGBlockPlugin alloc] initWithBlock:^id<MRGRawEvent> _Nullable(id<MRGRawEvent> _Nullable event) {
+        if ([event isKindOfClass: [MRGTrackEvent class]]) {
+            MRGTrackEvent *track = (MRGTrackEvent *)event;
             // change the name
             NSString *newName = [NSString stringWithFormat: @"[New] %@", track.event];
             track.event = newName;
@@ -51,9 +51,9 @@
     
     [self.analytics addPlugin:customizeAllTrackCalls];
     
-    SEGBlockPlugin *booyaAllTrackCalls = [[SEGBlockPlugin alloc] initWithBlock:^id<SEGRawEvent> _Nullable(id<SEGRawEvent> _Nullable event) {
-        if ([event isKindOfClass: [SEGTrackEvent class]]) {
-            SEGTrackEvent *track = (SEGTrackEvent *)event;
+    MRGBlockPlugin *booyaAllTrackCalls = [[MRGBlockPlugin alloc] initWithBlock:^id<MRGRawEvent> _Nullable(id<MRGRawEvent> _Nullable event) {
+        if ([event isKindOfClass: [MRGTrackEvent class]]) {
+            MRGTrackEvent *track = (MRGTrackEvent *)event;
             // change the name
             NSString *newName = [NSString stringWithFormat: @"[Booya] %@", track.event];
             track.event = newName;

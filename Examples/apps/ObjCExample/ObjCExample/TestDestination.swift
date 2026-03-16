@@ -8,7 +8,7 @@
 import Foundation
 import Meergo
 
-@objc(SEGTestDestination)
+@objc(MRGTestDestination)
 public class ObjCTestDestination: NSObject, ObjCPlugin, ObjCPluginShim {
     public func instance() -> EventPlugin { return TestDestination() }
 }
