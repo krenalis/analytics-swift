@@ -8,6 +8,7 @@
 import Foundation
 
 public struct Settings: Codable {
+    public var strategy: String = "Isolation"
     public var integrations: JSON? = nil
     public var plan: JSON? = nil
     public var edgeFunction: JSON? = nil
@@ -36,6 +37,7 @@ public struct Settings: Codable {
     
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
+        self.strategy = (try? values.decode(String.self, forKey: CodingKeys.strategy)) ?? "Isolation"
         self.integrations = try? values.decode(JSON.self, forKey: CodingKeys.integrations)
         self.plan = try? values.decode(JSON.self, forKey: CodingKeys.plan)
         self.edgeFunction = try? values.decode(JSON.self, forKey: CodingKeys.edgeFunction)
@@ -58,6 +60,7 @@ public struct Settings: Codable {
     }
     
     enum CodingKeys: String, CodingKey {
+        case strategy
         case integrations
         case plan
         case edgeFunction

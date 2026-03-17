@@ -118,6 +118,8 @@ public class Configuration {
         var endpoint: String = HTTPClient.getDefaultEndpoint()
         var requestFactory: ((URLRequest) -> URLRequest)? = nil
         var errorHandler: ((Error) -> Void)? = nil
+        var sessionAutoTrack: Bool = true
+        var sessionTimeout: Int64 = 5 * 60000 // 5 minutes.
         var flushPolicies: [FlushPolicy] = [CountBasedFlushPolicy(), IntervalBasedFlushPolicy()]
         var operatingMode: OperatingMode = .asynchronous
         var flushQueue: DispatchQueue = OperatingMode.defaultQueue

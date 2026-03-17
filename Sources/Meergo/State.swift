@@ -212,12 +212,40 @@ extension UserInfo {
             return UserInfo(anonymousId: state.anonymousId, userId: userId, traits: traits ?? .object([:]), referrer: state.referrer, anonIdGenerator: state.anonIdGenerator)
         }
     }
+
+    struct SetUserAction: Action {
+        let anonymousId: String
+        let userId: String?
+        let traits: JSON?
+
+        func reduce(state: UserInfo) -> UserInfo {
+            return UserInfo(anonymousId: anonymousId, userId: userId, traits: traits ?? .object([:]), referrer: state.referrer, anonIdGenerator: state.anonIdGenerator)
+        }
+    }
     
     struct SetReferrerAction: Action {
         let url: URL
         
         func reduce(state: UserInfo) -> UserInfo {
             return UserInfo(anonymousId: state.anonymousId, userId: state.userId, traits: state.traits, referrer: url, anonIdGenerator: state.anonIdGenerator)
+        }
+    }
+}
+
+// MARK: - Session Information
+
+struct SessionInfo: State {
+    var id: Int64?
+    var expiration: Int64
+    var start: Bool
+
+    struct SetSessionAction: Action {
+        let id: Int64?
+        let expiration: Int64
+        let start: Bool
+
+        func reduce(state: SessionInfo) -> SessionInfo {
+            return SessionInfo(id: id, expiration: expiration, start: start)
         }
     }
 }
@@ -256,5 +284,14 @@ extension UserInfo {
             anonymousId = anonIdGenerator.newAnonymousId()
         }
         return UserInfo(anonymousId: anonymousId, userId: userId, traits: traits, referrer: nil, anonIdGenerator: anonIdGenerator)
+    }
+}
+
+extension SessionInfo {
+    static func defaultState(from storage: Storage) -> SessionInfo {
+        let id: Int64? = storage.read(.sessionId)
+        let expiration: Int64 = storage.read(.sessionExpiration) ?? 0
+        let start: Bool = storage.read(.sessionStart) ?? false
+        return SessionInfo(id: id, expiration: expiration, start: start)
     }
 }

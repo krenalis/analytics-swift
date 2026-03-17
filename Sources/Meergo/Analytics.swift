@@ -83,6 +83,7 @@ public class Analytics {
         // provide our default state
         store.provide(state: System.defaultState(configuration: configuration, from: storage))
         store.provide(state: UserInfo.defaultState(from: storage, anonIdGenerator: configuration.values.anonymousIdGenerator))
+        store.provide(state: SessionInfo.defaultState(from: storage))
         
         storage.analytics = self
 
@@ -99,7 +100,20 @@ public class Analytics {
 
     internal func process<E: RawEvent>(incomingEvent: E, enrichments: [EnrichmentClosure]? = nil) {
         guard enabled == true else { return }
-        let event = incomingEvent.applyRawEventData(store: store, enrichments: enrichments)
+        var event = incomingEvent.applyRawEventData(store: store, enrichments: enrichments)
+
+        // Add the session info to the context.
+        let s = getFreshSession()
+        if let sessionId = s.id {
+            var contextDict = event.context?.dictionaryValue ?? [:]
+            contextDict["sessionId"] = sessionId
+            if s.start {
+                contextDict["sessionStart"] = true
+            }
+            if let updatedContext = try? JSON(contextDict) {
+                event.context = updatedContext
+            }
+        }
 
         _ = timeline.process(incomingEvent: event)
 
@@ -274,10 +288,49 @@ extension Analytics {
         }
     }
 
-    /// Resets this instance of Analytics to a clean slate.  Traits, UserID's, anonymousId, etc are all cleared or reset.  This
-    /// command will also be sent to each plugin present in the system.
-    public func reset() {
-        store.dispatch(action: UserInfo.ResetAction())
+    /// Resets the user identity and session info based on the strategy, and resets 
+    /// all the event plugins.
+    ///
+    /// If "all" is true always reset the Anonymous ID by generating a new one, and 
+    /// end the session if one exists, regardless of the strategy.
+    ///
+    /// Should be invoked when user logs out.
+    ///
+    /// - Parameters:
+    ///   - all: If `true`, forces a full reset regardless of the active strategy.
+    public func reset(all: Bool = false) {
+        guard let currentUserInfo: UserInfo = store.currentState(),
+              let currentSessionInfo: SessionInfo = store.currentState() else { return }
+
+        var newAnonymousId = currentUserInfo.anonymousId
+        var newTraits: JSON? = nil
+        var newSessionId: Int64? = currentSessionInfo.id
+        var newSessionExpiration: Int64 = currentSessionInfo.expiration
+        var newSessionStart = currentSessionInfo.start
+
+        if !all && options.strategy == "Preservation" {
+            let restored = storage.restore()
+            newSessionId = restored.sessionId
+            newSessionExpiration = restored.sessionExpiration
+            newSessionStart = restored.sessionStart
+            newAnonymousId = restored.userAnonymousId.isEmpty ? UUID().uuidString : restored.userAnonymousId
+            newTraits = restored.userTraits
+        } else {
+            storage.removeSuspended()
+            if all || options.strategy == "Conversion" || options.strategy == "Isolation" {
+                if newSessionId != nil {
+                    let fresh = newSession(id: nil, timeout: configuration.values.sessionTimeout)
+                    newSessionId = fresh.id
+                    newSessionExpiration = fresh.expiration
+                    newSessionStart = fresh.start
+                }
+                newAnonymousId = UUID().uuidString
+            }
+        }
+
+        store.dispatch(action: UserInfo.SetUserAction(anonymousId: newAnonymousId, userId: nil, traits: newTraits))
+        store.dispatch(action: SessionInfo.SetSessionAction(id: newSessionId, expiration: newSessionExpiration, start: newSessionStart))
+
         apply { plugin in
             if let p = plugin as? EventPlugin {
                 p.reset()
@@ -354,6 +407,118 @@ extension Analytics {
     /// - Returns: A string representing the version in "BREAKING.FEATURE.FIX" format.
     public static func version() -> String {
         return __meergo_version
+    }
+}
+
+extension Analytics {
+    /// Returns the current settings, reading from the store. Falls back to a default
+    /// Settings instance if no settings are available yet.
+    internal var options: Settings {
+        if let system: System = store.currentState(), let settings = system.settings {
+            return settings
+        }
+        return Settings(writeKey: configuration.values.writeKey)
+    }
+
+    /// Returns the current session ID if an active session exists, otherwise `nil`.
+    public func getSessionId() -> Int64? {
+        guard let sessionInfo: SessionInfo = store.currentState(), let id = sessionInfo.id else { return nil }
+        guard configuration.values.sessionAutoTrack else { return id }
+        let now = Int64(Date().timeIntervalSince1970 * 1000)
+        return sessionInfo.expiration < now ? nil : id
+    }
+
+    /// Returns the current session, extending its expiration. Starts a new session if
+    /// `sessionAutoTrack` is enabled and there is no active session.
+    internal func getFreshSession() -> SessionInfo {
+        guard let sessionInfo: SessionInfo = store.currentState() else {
+            return SessionInfo(id: nil, expiration: 0, start: false)
+        }
+
+        let now = Int64(Date().timeIntervalSince1970 * 1000)
+        var id = sessionInfo.id
+        var expiration = sessionInfo.expiration
+        var start = sessionInfo.start
+
+        if configuration.values.sessionAutoTrack {
+            if id == nil || expiration < now {
+                id = now
+                start = true
+            }
+        }
+
+        if let currentId = id {
+            expiration = now + configuration.values.sessionTimeout
+            store.dispatch(action: SessionInfo.SetSessionAction(id: currentId, expiration: expiration, start: false))
+        }
+
+        return SessionInfo(id: id, expiration: expiration, start: start)
+    }
+
+    /// Ends the current session.
+    public func endSession() {
+        store.dispatch(action: SessionInfo.SetSessionAction(id: nil, expiration: 0, start: false))
+    }
+
+    /// Starts a new session with the given `id`. If `id` is `nil`, the current time in
+    /// milliseconds since the epoch is used as the session identifier.
+    ///
+    /// - Parameter id: A positive identifier for the session, or `nil` to use the current time.
+    public func startSession(id: Int64? = nil) {
+        if let id = id, id <= 0 {
+            assertionFailure("sessionId must be a positive Int64")
+            return
+        }
+        let s = newSession(id: id, timeout: configuration.values.sessionTimeout)
+        store.dispatch(action: SessionInfo.SetSessionAction(id: s.id, expiration: s.expiration, start: s.start))
+    }
+
+    /// mergeTraits merges traits into the current user's traits and returns them.
+    internal func mergeTraits(_ traits: JSON) -> JSON {
+        guard let currentUserInfo: UserInfo = store.currentState() else { return traits }
+        guard var existingDict = currentUserInfo.traits.dictionaryValue else { return traits }
+        if let incomingDict = traits.dictionaryValue {
+            existingDict.merge(incomingDict) { _, new in new }
+        }
+        return (try? JSON(existingDict)) ?? traits
+    }
+
+    /// Applies the active strategy when identifying a user, updating anonymousId and session
+    /// if required, then sends the identify event.
+    internal func identifyWithStrategy(userId: String, traits: JSON?, enrichments: [EnrichmentClosure]? = nil) {
+        guard let currentUserInfo: UserInfo = store.currentState() else { return }
+        guard let currentSessionInfo: SessionInfo = store.currentState() else { return }
+
+        var newAnonymousId = currentUserInfo.anonymousId
+        var newTraits = traits ?? .object([:])
+        var newSessionId = currentSessionInfo.id
+        var newSessionExpiration = currentSessionInfo.expiration
+        var newSessionStart = currentSessionInfo.start
+
+        if userId != currentUserInfo.userId {
+            if options.strategy == "Isolation" || options.strategy == "Preservation" {
+                if options.strategy == "Preservation" {
+                    storage.suspend(sessionId: newSessionId, sessionExpiration: newSessionExpiration, sessionStart: newSessionStart, userAnonymousId: currentUserInfo.anonymousId, userTraits: currentUserInfo.traits)
+                } else {
+                    storage.removeSuspended()
+                }
+                newAnonymousId = UUID().uuidString
+                if newSessionId != nil && configuration.values.sessionAutoTrack {
+                    let fresh = newSession(id: nil, timeout: configuration.values.sessionTimeout)
+                    newSessionId = fresh.id
+                    newSessionExpiration = fresh.expiration
+                    newSessionStart = fresh.start
+                }
+            } else if currentUserInfo.userId == nil {
+                newTraits = mergeTraits(traits ?? .object([:]))
+            }
+        }
+
+        store.dispatch(action: UserInfo.SetUserAction(anonymousId: newAnonymousId, userId: userId, traits: newTraits))
+        store.dispatch(action: SessionInfo.SetSessionAction(id: newSessionId, expiration: newSessionExpiration, start: newSessionStart))
+
+        let event = IdentifyEvent(userId: userId, traits: newTraits)
+        process(incomingEvent: event, enrichments: enrichments)
     }
 }
 

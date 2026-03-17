@@ -185,4 +185,35 @@ extension ObjCAnalytics {
     }
 }
 
+// MARK: - ObjC Session Management
+
+@objc
+extension ObjCAnalytics {
+    /// Returns the current session ID, or `nil` if no active session exists.
+    @objc
+    public func getSessionId() -> NSNumber? {
+        guard let id = analytics.getSessionId() else { return nil }
+        return NSNumber(value: id)
+    }
+
+    /// Starts a new session using the current time as the session identifier.
+    @objc
+    public func startSession() {
+        analytics.startSession()
+    }
+
+    /// Starts a new session with the given identifier.
+    /// - Parameter id: A positive identifier for the session.
+    @objc(startSession:)
+    public func startSession(id: Int64) {
+        analytics.startSession(id: id)
+    }
+
+    /// Ends the current session.
+    @objc
+    public func endSession() {
+        analytics.endSession()
+    }
+}
+
 #endif

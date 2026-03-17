@@ -13,6 +13,11 @@ extension Analytics: Subscriber {
     internal func platformStartup() {
         add(plugin: StartupQueue())
 
+        // Start a session immediately if session auto-tracking is enabled.
+        if configuration.values.sessionAutoTrack {
+            _ = getFreshSession()
+        }
+
         // add meergo destination plugin unless
         // asked not to via configuration.
         if configuration.values.autoAddMeergoDestination && configuration.values.autoAddSegmentDestination {

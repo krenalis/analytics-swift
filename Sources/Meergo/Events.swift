@@ -52,13 +52,9 @@ extension Analytics {
         do {
             if let traits = traits {
                 let jsonTraits = try JSON(with: traits)
-                store.dispatch(action: UserInfo.SetUserIdAndTraitsAction(userId: userId, traits: jsonTraits))
-                let event = IdentifyEvent(userId: userId, traits: jsonTraits)
-                process(incomingEvent: event)
+                identifyWithStrategy(userId: userId, traits: jsonTraits)
             } else {
-                store.dispatch(action: UserInfo.SetUserIdAndTraitsAction(userId: userId, traits: nil))
-                let event = IdentifyEvent(userId: userId, traits: nil)
-                process(incomingEvent: event)
+                identifyWithStrategy(userId: userId, traits: nil)
             }
         } catch {
             reportInternalError(error, fatal: true)
@@ -84,9 +80,7 @@ extension Analytics {
     ///   - userId: A database ID for this user.
     /// In the case when user logs out, make sure to call ``reset()`` to clear user's identity info.
     public func identify(userId: String) {
-        let event = IdentifyEvent(userId: userId, traits: nil)
-        store.dispatch(action: UserInfo.SetUserIdAction(userId: userId))
-        process(incomingEvent: event)
+        identifyWithStrategy(userId: userId, traits: nil)
     }
     
     public func screen<P: Encodable>(title: String, category: String? = nil, properties: P?) {
@@ -167,14 +161,10 @@ extension Analytics {
     public func identify(userId: String, traits: [String: Any]? = nil) {
         do {
             if let traits = traits {
-                let traits = try JSON(traits as Any)
-                store.dispatch(action: UserInfo.SetUserIdAndTraitsAction(userId: userId, traits: traits))
-                let event = IdentifyEvent(userId: userId, traits: traits)
-                process(incomingEvent: event)
+                let jsonTraits = try JSON(traits as Any)
+                identifyWithStrategy(userId: userId, traits: jsonTraits)
             } else {
-                store.dispatch(action: UserInfo.SetUserIdAndTraitsAction(userId: userId, traits: nil))
-                let event = IdentifyEvent(userId: userId, traits: nil)
-                process(incomingEvent: event)
+                identifyWithStrategy(userId: userId, traits: nil)
             }
         } catch {
             reportInternalError(error, fatal: true)
@@ -283,13 +273,9 @@ extension Analytics {
         do {
             if let traits = traits {
                 let jsonTraits = try JSON(with: traits)
-                store.dispatch(action: UserInfo.SetUserIdAndTraitsAction(userId: userId, traits: jsonTraits))
-                let event = IdentifyEvent(userId: userId, traits: jsonTraits)
-                process(incomingEvent: event, enrichments: enrichments)
+                identifyWithStrategy(userId: userId, traits: jsonTraits, enrichments: enrichments)
             } else {
-                store.dispatch(action: UserInfo.SetUserIdAndTraitsAction(userId: userId, traits: nil))
-                let event = IdentifyEvent(userId: userId, traits: nil)
-                process(incomingEvent: event, enrichments: enrichments)
+                identifyWithStrategy(userId: userId, traits: nil, enrichments: enrichments)
             }
         } catch {
             reportInternalError(error, fatal: true)
@@ -317,9 +303,7 @@ extension Analytics {
     ///   - enrichments: Enrichments to be applied to this specific event only, or `nil` for none.
     /// In the case when user logs out, make sure to call ``reset()`` to clear user's identity info.
     public func identify(userId: String, enrichments: [EnrichmentClosure]?) {
-        let event = IdentifyEvent(userId: userId, traits: nil)
-        store.dispatch(action: UserInfo.SetUserIdAction(userId: userId))
-        process(incomingEvent: event, enrichments: enrichments)
+        identifyWithStrategy(userId: userId, traits: nil, enrichments: enrichments)
     }
 
     /// Associate a user with their unique ID and record traits about them.
@@ -334,14 +318,10 @@ extension Analytics {
     public func identify(userId: String, traits: [String: Any]? = nil, enrichments: [EnrichmentClosure]?) {
         do {
             if let traits = traits {
-                let traits = try JSON(traits as Any)
-                store.dispatch(action: UserInfo.SetUserIdAndTraitsAction(userId: userId, traits: traits))
-                let event = IdentifyEvent(userId: userId, traits: traits)
-                process(incomingEvent: event, enrichments: enrichments)
+                let jsonTraits = try JSON(traits as Any)
+                identifyWithStrategy(userId: userId, traits: jsonTraits, enrichments: enrichments)
             } else {
-                store.dispatch(action: UserInfo.SetUserIdAndTraitsAction(userId: userId, traits: nil))
-                let event = IdentifyEvent(userId: userId, traits: nil)
-                process(incomingEvent: event, enrichments: enrichments)
+                identifyWithStrategy(userId: userId, traits: nil, enrichments: enrichments)
             }
         } catch {
             reportInternalError(error, fatal: true)

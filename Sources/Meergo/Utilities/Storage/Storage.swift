@@ -52,6 +52,9 @@ internal class Storage: Subscriber {
         store.subscribe(self) { [weak self] (state: UserInfo) in
             self?.userInfoUpdate(state: state)
         }
+        store.subscribe(self) { [weak self] (state: SessionInfo) in
+            self?.sessionInfoUpdate(state: state)
+        }
         store.subscribe(self) { [weak self] (state: System) in
             self?.systemUpdate(state: state)
         }
@@ -157,7 +160,12 @@ internal class Storage: Subscriber {
         }
         return result
     }
-    
+
+    func remove(_ key: Storage.Constants) {
+        userDefaults.removeObject(forKey: key.rawValue)
+        userDefaults.synchronize()
+    }
+
     func remove(data: [DataStore.ItemID]?) {
         guard let data else { return }
         dataStore.remove(data: data)
@@ -175,6 +183,10 @@ extension Storage {
         case anonymousId = "meergo.anonymousId"
         case settings = "meergo.settings"
         case events = "meergo.events"
+        case sessionId = "meergo.sessionId"
+        case sessionExpiration = "meergo.sessionExpiration"
+        case sessionStart = "meergo.sessionStart"
+        case suspended = "meergo.suspended"
     }
 }
 
@@ -187,11 +199,78 @@ extension Storage {
         write(.traits, value: state.traits)
         write(.anonymousId, value: state.anonymousId)
     }
-    
+
+    internal func sessionInfoUpdate(state: SessionInfo) {
+        if let id = state.id {
+            write(.sessionId, value: id)
+            write(.sessionExpiration, value: state.expiration)
+            write(.sessionStart, value: state.start)
+        } else {
+            remove(.sessionId)
+            remove(.sessionExpiration)
+            remove(.sessionStart)
+        }
+    }
+
     internal func systemUpdate(state: System) {
         // write new stuff to disk
         if let s = state.settings {
             write(.settings, value: s)
         }
     }
+}
+
+// MARK: - Session Suspension
+
+extension Storage {
+    /// Saves the current session and user state so it can be restored after a reset
+    /// (used by the "Preservation" strategy).
+    func suspend(sessionId: Int64?, sessionExpiration: Int64, sessionStart: Bool, userAnonymousId: String, userTraits: JSON?) {
+        var suspendedSession: SuspendedSession? = nil
+        if let sessionId = sessionId {
+            suspendedSession = SuspendedSession(id: sessionId, expiration: sessionExpiration, start: sessionStart)
+        }
+        let suspended = Suspended(session: suspendedSession, userAnonymousId: userAnonymousId, userTraits: userTraits)
+        write(.suspended, value: suspended)
+    }
+
+    /// Removes the previously suspended state.
+    func removeSuspended() {
+        remove(.suspended)
+    }
+
+    /// Restores the previously suspended state and removes it from storage.
+    /// Returns a tuple with the restored session and user data.
+    func restore() -> (sessionId: Int64?, sessionExpiration: Int64, sessionStart: Bool, userAnonymousId: String, userTraits: JSON?) {
+        var sessionId: Int64? = nil
+        var sessionExpiration: Int64 = 0
+        var sessionStart = false
+        var userAnonymousId = ""
+        var userTraits: JSON? = nil
+
+        if let suspended: Suspended = read(.suspended) {
+            sessionId = suspended.session?.id
+            sessionExpiration = suspended.session?.expiration ?? 0
+            sessionStart = suspended.session?.start ?? false
+            userAnonymousId = suspended.userAnonymousId
+            userTraits = suspended.userTraits
+        }
+
+        removeSuspended()
+        return (sessionId, sessionExpiration, sessionStart, userAnonymousId, userTraits)
+    }
+}
+
+// MARK: - Suspended State Types
+
+struct SuspendedSession: Codable {
+    let id: Int64?
+    let expiration: Int64
+    let start: Bool
+}
+
+struct Suspended: Codable {
+    let session: SuspendedSession?
+    let userAnonymousId: String
+    let userTraits: JSON?
 }
