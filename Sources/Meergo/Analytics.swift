@@ -313,7 +313,7 @@ extension Analytics {
             newSessionId = restored.sessionId
             newSessionExpiration = restored.sessionExpiration
             newSessionStart = restored.sessionStart
-            newAnonymousId = restored.userAnonymousId.isEmpty ? UUID().uuidString : restored.userAnonymousId
+            newAnonymousId = restored.userAnonymousId.isEmpty ? (currentUserInfo.anonIdGenerator?.newAnonymousId() ?? UUID().uuidString) : restored.userAnonymousId
             newTraits = restored.userTraits
         } else {
             storage.removeSuspended()
@@ -324,7 +324,7 @@ extension Analytics {
                     newSessionExpiration = fresh.expiration
                     newSessionStart = fresh.start
                 }
-                newAnonymousId = UUID().uuidString
+                newAnonymousId = currentUserInfo.anonIdGenerator?.newAnonymousId() ?? UUID().uuidString
             }
         }
 
@@ -502,7 +502,7 @@ extension Analytics {
                 } else {
                     storage.removeSuspended()
                 }
-                newAnonymousId = UUID().uuidString
+                newAnonymousId = currentUserInfo.anonIdGenerator?.newAnonymousId() ?? UUID().uuidString
                 if newSessionId != nil && configuration.values.sessionAutoTrack {
                     let fresh = newSession(id: nil, timeout: configuration.values.sessionTimeout)
                     newSessionId = fresh.id
