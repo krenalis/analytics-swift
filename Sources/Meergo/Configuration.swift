@@ -300,8 +300,8 @@ extension Configuration {
     }
 
     /// Informs the Analytics instance of its operating mode/context.
-    /// Use `.server` when operating in a web service, or when synchronous operation
-    /// is desired.  Use `.client` when operating in a long lived process,
+    /// Use `.synchronous` when operating in a web service or when synchronous operation
+    /// is desired.  Use `.asynchronous` when operating in a long-lived process,
     /// desktop/mobile application.
     @discardableResult
     public func operatingMode(_ mode: OperatingMode) -> Configuration {
