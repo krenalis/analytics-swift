@@ -360,6 +360,17 @@ extension Configuration {
         values.httpSession = httpSession
         return self
     }
+
+    /// Enable or disable automatic session tracking. When enabled, sessions are started
+    /// automatically on launch and renewed after expiration. The default value is `true`.
+    ///
+    /// - Parameter value: true/false
+    /// - Returns: The current Configuration.
+    @discardableResult
+    public func sessionAutoTrack(_ value: Bool) -> Configuration {
+        values.sessionAutoTrack = value
+        return self
+    }
 }
 
 extension Analytics {
