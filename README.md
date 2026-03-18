@@ -46,7 +46,6 @@ import Meergo
 
 let configuration = Configuration(writeKey: "YOUR_WRITE_KEY")
     .endpoint("YOUR_ENDPOINT")
-    .setTrackedApplicationLifecycleEvents(.all)
     .flushAt(3)
     .flushInterval(10)
     // ...other config options
