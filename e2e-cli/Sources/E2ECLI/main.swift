@@ -1,5 +1,5 @@
 import Foundation
-import Meergo
+import Krenalis
 
 // MARK: - Input/Output Models
 

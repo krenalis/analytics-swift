@@ -7,7 +7,7 @@
 
 import WatchKit
 import Foundation
-import Meergo
+import Krenalis
 
 
 class InterfaceController: WKInterfaceController {

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Meergo
+import Krenalis
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -7,12 +7,12 @@
 
 // NOTE: You can see this plugin in use in the SwiftUIKitExample application.
 //
-// This plugin is NOT SUPPORTED by Meergo.  It is here merely as an example,
+// This plugin is NOT SUPPORTED by Krenalis.  It is here merely as an example,
 // and for your convenience should you find it useful.
 
 // MIT License
 //
-// Copyright (c) 2026 Meergo
+// Copyright (c) 2026 Krenalis
 // Copyright (c) 2021 Segment
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -36,7 +36,7 @@
 #if os(iOS) && !targetEnvironment(macCatalyst)
 
 import Foundation
-import Meergo
+import Krenalis
 import CoreTelephony
 
 /**

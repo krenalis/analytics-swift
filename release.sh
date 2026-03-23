@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PRODUCT_NAME="Meergo"
+PRODUCT_NAME="Krenalis"
 
 LOWER_PRODUCT_NAME="$(echo ${PRODUCT_NAME} | tr '[:upper:]' '[:lower:]')"
 
@@ -113,7 +113,7 @@ tempFile=$(mktemp)
 #write changelog to temp file.
 echo -e "$changelog" >> $tempFile
 
-# update sources/Meergo/Version.swift
+# update sources/Krenalis/Version.swift
 # - remove last line...
 sed -i '' -e '$ d' $versionFile
 # - add new line w/ new version

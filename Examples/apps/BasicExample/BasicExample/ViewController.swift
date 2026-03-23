@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import Meergo
+import Krenalis
 
 class ViewController: UIViewController {
     var analytics: Analytics? {

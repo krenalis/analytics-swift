@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Meergo
+import Krenalis
 import UIKit
 
 struct WorkoutProperties: Codable {

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		460FF309299AAEEC00635FF9 /* Meergo in Frameworks */ = {isa = PBXBuildFile; productRef = 460FF308299AAEEC00635FF9 /* Meergo */; };
+		460FF309299AAEEC00635FF9 /* Krenalis in Frameworks */ = {isa = PBXBuildFile; productRef = 460FF308299AAEEC00635FF9 /* Krenalis */; };
 		463F61EA29E9C33400BBB4ED /* TestDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463F61E929E9C33400BBB4ED /* TestDestination.swift */; };
 		464247BC26C6D7A700CAD301 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 464247BB26C6D7A700CAD301 /* AppDelegate.m */; };
 		464247BF26C6D7A700CAD301 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 464247BE26C6D7A700CAD301 /* SceneDelegate.m */; };
@@ -40,7 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				460FF309299AAEEC00635FF9 /* Meergo in Frameworks */,
+				460FF309299AAEEC00635FF9 /* Krenalis in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,7 +108,7 @@
 			);
 			name = ObjCExample;
 			packageProductDependencies = (
-				460FF308299AAEEC00635FF9 /* Meergo */,
+				460FF308299AAEEC00635FF9 /* Krenalis */,
 			);
 			productName = ObjCExample;
 			productReference = 464247B726C6D7A700CAD301 /* ObjCExample.app */;
@@ -320,7 +320,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.meergo.ObjCExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krenalis.ObjCExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ObjCExample/ObjCExample-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -341,7 +341,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.meergo.ObjCExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krenalis.ObjCExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "ObjCExample/ObjCExample-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -373,9 +373,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		460FF308299AAEEC00635FF9 /* Meergo */ = {
+		460FF308299AAEEC00635FF9 /* Krenalis */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Meergo;
+			productName = Krenalis;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

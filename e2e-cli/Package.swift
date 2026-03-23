@@ -8,13 +8,13 @@ let package = Package(
         .macOS("10.15")
     ],
     dependencies: [
-        .package(name: "Meergo", path: ".."),
+        .package(name: "Krenalis", path: ".."),
     ],
     targets: [
         .executableTarget(
             name: "E2ECLI",
             dependencies: [
-                "Meergo",
+                "Krenalis",
             ]
         ),
     ]

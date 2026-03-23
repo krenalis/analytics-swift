@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "Meergo",
+    name: "Krenalis",
     platforms: [
         .macOS("10.15"),
         .iOS("13.0"),
@@ -15,8 +15,8 @@ let package = Package(
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
-            name: "Meergo",
-            targets: ["Meergo"]),
+            name: "Krenalis",
+            targets: ["Krenalis"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -28,18 +28,18 @@ let package = Package(
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
-            name: "Meergo",
+            name: "Krenalis",
             dependencies: [
                 .product(name: "Sovran", package: "sovran-swift"),
                 .product(name: "JSONSafeEncoding", package: "jsonsafeencoding-swift")
             ],
-            path: "Sources/Meergo",
+            path: "Sources/Krenalis",
             resources: [.process("Resources")]
         ),
         .testTarget(
-            name: "Meergo-Tests",
-            dependencies: ["Meergo"],
-            path: "Tests/Meergo-Tests"
+            name: "Krenalis-Tests",
+            dependencies: ["Krenalis"],
+            path: "Tests/Krenalis-Tests"
         ),
     ]
 )

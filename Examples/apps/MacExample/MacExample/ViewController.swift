@@ -6,7 +6,7 @@
 //
 
 import Cocoa
-import Meergo
+import Krenalis
 
 class ViewController: NSViewController {
     var analytics: Analytics? {

@@ -17,7 +17,7 @@
 		469ECD652684F9090028BE9A /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469ECD642684F9090028BE9A /* NotificationController.swift */; };
 		469ECD672684F9090028BE9A /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469ECD662684F9090028BE9A /* ComplicationController.swift */; };
 		469ECD692684F90A0028BE9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 469ECD682684F90A0028BE9A /* Assets.xcassets */; };
-		469ECD7B2684FD710028BE9A /* Meergo in Frameworks */ = {isa = PBXBuildFile; productRef = 469ECD7A2684FD710028BE9A /* Meergo */; };
+		469ECD7B2684FD710028BE9A /* Krenalis in Frameworks */ = {isa = PBXBuildFile; productRef = 469ECD7A2684FD710028BE9A /* Krenalis */; };
 		46E73DA626F5389E0021042C /* NotificationTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E73DA526F5389E0021042C /* NotificationTracking.swift */; };
 /* End PBXBuildFile section */
 
@@ -86,7 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				469ECD7B2684FD710028BE9A /* Meergo in Frameworks */,
+				469ECD7B2684FD710028BE9A /* Krenalis in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,7 +205,7 @@
 			);
 			name = "watchOSExample WatchKit Extension";
 			packageProductDependencies = (
-				469ECD7A2684FD710028BE9A /* Meergo */,
+				469ECD7A2684FD710028BE9A /* Krenalis */,
 			);
 			productName = "watchOSExample WatchKit Extension";
 			productReference = 469ECD5B2684F9090028BE9A /* watchOSExample WatchKit Extension.appex */;
@@ -444,7 +444,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.meergo.watchOSExample.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krenalis.watchOSExample.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -465,7 +465,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.meergo.watchOSExample.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krenalis.watchOSExample.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -484,7 +484,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				IBSC_MODULE = watchOSExample_WatchKit_Extension;
 				INFOPLIST_FILE = "watchOSExample WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = com.meergo.watchOSExample.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krenalis.watchOSExample.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -503,7 +503,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				IBSC_MODULE = watchOSExample_WatchKit_Extension;
 				INFOPLIST_FILE = "watchOSExample WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = com.meergo.watchOSExample.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krenalis.watchOSExample.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -519,7 +519,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.meergo.watchOSExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krenalis.watchOSExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -531,7 +531,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.meergo.watchOSExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krenalis.watchOSExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -579,9 +579,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		469ECD7A2684FD710028BE9A /* Meergo */ = {
+		469ECD7A2684FD710028BE9A /* Krenalis */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Meergo;
+			productName = Krenalis;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

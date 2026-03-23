@@ -6,7 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@import Meergo;
+@import Krenalis;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

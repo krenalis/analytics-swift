@@ -1,6 +1,6 @@
 //
 //  MultiInstance.swift
-//  MeergoUIKitExample
+//  KrenalisUIKitExample
 //
 //  Created by Brandon Sneed on 4/8/21.
 //
@@ -9,7 +9,7 @@
 
 // MIT License
 //
-// Copyright (c) 2026 Meergo
+// Copyright (c) 2026 Krenalis
 // Copyright (c) 2021 Segment
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -31,7 +31,7 @@
 // SOFTWARE.
 
 import Foundation
-import Meergo
+import Krenalis
 
 /**
  An example of implementing multiple Analytics instances in a single application.

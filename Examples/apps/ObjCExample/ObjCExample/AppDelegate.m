@@ -8,7 +8,7 @@
 #import "AppDelegate.h"
 #import "ObjCExample-Swift.h"
 
-@import Meergo;
+@import Krenalis;
 
 @interface AppDelegate ()
 
@@ -67,7 +67,7 @@
         return event;
     }];
     
-    [self.analytics addPlugin:booyaAllTrackCalls destinationKey:@"Meergo"];
+    [self.analytics addPlugin:booyaAllTrackCalls destinationKey:@"Krenalis"];
 
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.analytics track:@"schneeble schnobble"];

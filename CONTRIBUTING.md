@@ -1,6 +1,6 @@
 # Contributing
 
-This document provides information useful for contributing to the Meergo Swift SDK.
+This document provides information useful for contributing to the Krenalis Swift SDK.
 
 ## Prerequisites
 
@@ -25,25 +25,25 @@ swift test
 **iOS:**
 
 ```bash
-xcodebuild -scheme Meergo test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 17'
+xcodebuild -scheme Krenalis test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 17'
 ```
 
 **tvOS:**
 
 ```bash
-xcodebuild -scheme Meergo test -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV'
+xcodebuild -scheme Krenalis test -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV'
 ```
 
 **watchOS:**
 
 ```bash
-xcodebuild -scheme Meergo test -sdk watchsimulator -destination 'platform=watchOS Simulator,name=Apple Watch Ultra 3 (49mm)'
+xcodebuild -scheme Krenalis test -sdk watchsimulator -destination 'platform=watchOS Simulator,name=Apple Watch Ultra 3 (49mm)'
 ```
 
 **visionOS:**
 
 ```bash
-xcodebuild -scheme Meergo test -destination 'platform=visionOS Simulator,OS=26.0,name=Apple Vision Pro'
+xcodebuild -scheme Krenalis test -destination 'platform=visionOS Simulator,OS=26.0,name=Apple Vision Pro'
 ```
 
 ## Running the sample application
@@ -52,8 +52,8 @@ To run the sample application locally:
 
 1. Open `Examples/apps/BasicExample` in Xcode.
 
-2. Open `AppDelegate.swift` and replace `WRITE_KEY` and `ENDPOINT` with the values from your Meergo Apple source.
+2. Open `AppDelegate.swift` and replace `WRITE_KEY` and `ENDPOINT` with the values from your Krenalis Apple source.
 
 3. Build and run the application from Xcode on an iOS Simulator.
 
-4. Interact with the buttons inside the application running in the simulator. You should see new logged events in the event debugger of the Meergo Apple source.
+4. Interact with the buttons inside the application running in the simulator. You should see new logged events in the event debugger of the Krenalis Apple source.

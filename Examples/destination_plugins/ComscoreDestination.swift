@@ -5,7 +5,7 @@
 //  Created by Cody Garvin on 9/21/21.
 //
 
-import Meergo
+import Krenalis
 import ComScore
 import CoreMedia
 
@@ -15,10 +15,10 @@ import CoreMedia
 
 // NOTE: You can see this plugin in use in the DestinationsExample application.
 //
-// This plugin is NOT SUPPORTED by Meergo.  It is here merely as an example,
+// This plugin is NOT SUPPORTED by Krenalis.  It is here merely as an example,
 // and for your convenience should you find it useful.
 //
-// Copyright (c) 2026 Meergo
+// Copyright (c) 2026 Krenalis
 // Copyright (c) 2022 Segment
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -162,7 +162,7 @@ private struct ComscoreSettings: Codable {
 }
 
 // Rules for converting keys and values to the proper formats that bridge
-// from Meergo to the Partner SDK. These are only examples.
+// from Krenalis to the Partner SDK. These are only examples.
 private extension ComscoreDestination {
     
     static let partnerId = "23243060"

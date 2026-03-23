@@ -1,6 +1,6 @@
 //
 //  CustomScreenTracking.swift
-//  MeergoUIKitExample
+//  KrenalisUIKitExample
 //
 //  Created by Brandon Sneed on 4/14/21.
 //
@@ -9,7 +9,7 @@
 
 // MIT License
 //
-// Copyright (c) 2026 Meergo
+// Copyright (c) 2026 Krenalis
 // Copyright (c) 2021 Segment
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -32,7 +32,7 @@
 
 import Foundation
 import UIKit
-import Meergo
+import Krenalis
 
 class QueryAlertController: UIAlertController {
     // we already conform to UIKitScreenTrackable so override

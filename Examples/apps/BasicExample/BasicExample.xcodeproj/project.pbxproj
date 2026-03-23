@@ -15,7 +15,7 @@
 		46E3836E265837EB00BA2502 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46E3836D265837EB00BA2502 /* Assets.xcassets */; };
 		46E38371265837EB00BA2502 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46E3836F265837EB00BA2502 /* LaunchScreen.storyboard */; };
 		46E3837A2658387D00BA2502 /* Sovran in Frameworks */ = {isa = PBXBuildFile; productRef = 46E383792658387D00BA2502 /* Sovran */; };
-		46E3837D265838B800BA2502 /* Meergo in Frameworks */ = {isa = PBXBuildFile; productRef = 46E3837C265838B800BA2502 /* Meergo */; };
+		46E3837D265838B800BA2502 /* Krenalis in Frameworks */ = {isa = PBXBuildFile; productRef = 46E3837C265838B800BA2502 /* Krenalis */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46E3837D265838B800BA2502 /* Meergo in Frameworks */,
+				46E3837D265838B800BA2502 /* Krenalis in Frameworks */,
 				46E3837A2658387D00BA2502 /* Sovran in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -102,7 +102,7 @@
 			name = BasicExample;
 			packageProductDependencies = (
 				46E383792658387D00BA2502 /* Sovran */,
-				46E3837C265838B800BA2502 /* Meergo */,
+				46E3837C265838B800BA2502 /* Krenalis */,
 			);
 			productName = BasicExample;
 			productReference = 46E38361265837EA00BA2502 /* BasicExample.app */;
@@ -320,7 +320,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.meergo.BasicExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krenalis.BasicExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = YES;
@@ -342,7 +342,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.meergo.BasicExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.krenalis.BasicExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = YES;
@@ -398,9 +398,9 @@
 			package = 46E383782658387D00BA2502 /* XCRemoteSwiftPackageReference "Sovran-Swift" */;
 			productName = Sovran;
 		};
-		46E3837C265838B800BA2502 /* Meergo */ = {
+		46E3837C265838B800BA2502 /* Krenalis */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = Meergo;
+			productName = Krenalis;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

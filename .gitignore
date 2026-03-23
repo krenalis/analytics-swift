@@ -92,10 +92,10 @@ iOSInjectionProject/
 Package.resolved
 *.xcuserdatad
 /.swiftpm/xcode/xcshareddata
-Meergo-Package_XCFramework
+Krenalis-Package_XCFramework
 *.zip
-Meergo.xcframework.zip
-Meergo.xcframework
+Krenalis.xcframework.zip
+Krenalis.xcframework
 XCFrameworkOutput
 *.sha256
 .fleet

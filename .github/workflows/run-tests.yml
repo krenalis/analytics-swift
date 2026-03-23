@@ -26,7 +26,7 @@ jobs:
         with:
           xcode-version: "26"
       - uses: actions/checkout@v4
-      - run: xcodebuild -scheme Meergo test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 17'
+      - run: xcodebuild -scheme Krenalis test -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 17'
 
   build_and_test_tvos:
 
@@ -36,7 +36,7 @@ jobs:
         with:
           xcode-version: "26"
       - uses: actions/checkout@v4
-      - run: xcodebuild -scheme Meergo test -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV'
+      - run: xcodebuild -scheme Krenalis test -sdk appletvsimulator -destination 'platform=tvOS Simulator,name=Apple TV'
 
   build_and_test_watchos:
 
@@ -46,7 +46,7 @@ jobs:
         with:
           xcode-version: "26"
       - uses: actions/checkout@v4
-      - run: xcodebuild -scheme Meergo test -sdk watchsimulator -destination 'platform=watchOS Simulator,name=Apple Watch Ultra 3 (49mm)'
+      - run: xcodebuild -scheme Krenalis test -sdk watchsimulator -destination 'platform=watchOS Simulator,name=Apple Watch Ultra 3 (49mm)'
 
   build_and_test_visionos:
 
@@ -56,7 +56,7 @@ jobs:
         with:
           xcode-version: "26"
       - uses: actions/checkout@v4
-      - run: xcodebuild -scheme Meergo test -destination 'platform=visionOS Simulator,OS=26.0,name=Apple Vision Pro'
+      - run: xcodebuild -scheme Krenalis test -destination 'platform=visionOS Simulator,OS=26.0,name=Apple Vision Pro'
 
   build_and_test_examples:
 
@@ -74,10 +74,10 @@ jobs:
         run: |
           cd Examples/apps/ObjCExample
           xcodebuild -workspace "ObjCExample.xcworkspace" -scheme "ObjCExample" -sdk iphonesimulator
-      - name: build MeergoSwiftUIExample
+      - name: build KrenalisSwiftUIExample
         run: |
-          cd Examples/apps/MeergoSwiftUIExample
-          xcodebuild -workspace "MeergoSwiftUIExample.xcworkspace" -scheme "MeergoSwiftUIExample" -sdk iphonesimulator
+          cd Examples/apps/KrenalisSwiftUIExample
+          xcodebuild -workspace "KrenalisSwiftUIExample.xcworkspace" -scheme "KrenalisSwiftUIExample" -sdk iphonesimulator
       - name: build MacExample
         run: |
           cd Examples/apps/MacExample

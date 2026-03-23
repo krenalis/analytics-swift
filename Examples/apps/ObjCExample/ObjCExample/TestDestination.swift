@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Meergo
+import Krenalis
 
 @objc(MRGTestDestination)
 public class ObjCTestDestination: NSObject, ObjCPlugin, ObjCPluginShim {

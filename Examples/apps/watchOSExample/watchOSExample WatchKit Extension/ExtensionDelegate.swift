@@ -6,7 +6,7 @@
 //
 
 import WatchKit
-import Meergo
+import Krenalis
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
     var analytics: Analytics? = nil

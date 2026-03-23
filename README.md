@@ -1,10 +1,10 @@
-# Meergo Swift SDK
+# Krenalis Swift SDK
 
-The Meergo Swift SDK lets you send customer event data from your Apple applications (iOS, macOS, tvOS, watchOS, visionOS) to your specified destinations.
+The Krenalis Swift SDK lets you send customer event data from your Apple applications (iOS, macOS, tvOS, watchOS, visionOS) to your specified destinations.
 
 ## SDK setup requirements
 
-- Set up a Meergo account.
+- Set up a Krenalis account.
 - Set up an Apple source in the dashboard.
 - Copy the write key and the endpoint.
 
@@ -16,17 +16,17 @@ In your `Package.swift`, add the following dependency:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/meergo/analytics-swift", from: "<latest_version>")
+    .package(url: "https://github.com/krenalis/analytics-swift", from: "<latest_version>")
 ]
 ```
 
-Then add `Meergo` as a dependency of your target:
+Then add `Krenalis` as a dependency of your target:
 
 ```swift
 .target(
     name: "YourApp",
     dependencies: [
-        .product(name: "Meergo", package: "analytics-swift")
+        .product(name: "Krenalis", package: "analytics-swift")
     ]
 )
 ```
@@ -36,7 +36,7 @@ Or, in Xcode, go to **File → Add Package Dependencies...** and enter the repos
 ## Using the SDK
 
 ```swift
-import Meergo
+import Krenalis
 
 let configuration = Configuration(writeKey: "YOUR_WRITE_KEY")
     .endpoint("YOUR_ENDPOINT")
@@ -57,7 +57,7 @@ analytics.track(name: "Workout completed", properties: [
 
 ## Sending events
 
-Refer to the Meergo events documentation for more information on the supported event types.
+Refer to the Krenalis events documentation for more information on the supported event types.
 
 ## Compatibility
 

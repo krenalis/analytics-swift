@@ -6,7 +6,7 @@
 //
 
 import Cocoa
-import Meergo
+import Krenalis
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
