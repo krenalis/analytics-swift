@@ -10,7 +10,7 @@
 
 import Foundation
 
-@objc(MRGPlugin)
+@objc(KRNPlugin)
 public protocol ObjCPlugin {}
 
 public protocol ObjCPluginShim {
@@ -20,14 +20,14 @@ public protocol ObjCPluginShim {
 // NOTE: Destination plugins need something similar to the following to work/
 /*
 
-@objc(MRGMixpanelDestination)
+@objc(KRNMixpanelDestination)
 public class ObjCKrenalisMixpanel: NSObject, ObjCPlugin, ObjCPluginShim {
     public func instance() -> EventPlugin { return MixpanelDestination() }
 }
 
 */
 
-@objc(MRGEventPlugin)
+@objc(KRNEventPlugin)
 public class ObjCEventPlugin: NSObject, EventPlugin, ObjCPlugin {
     public var type: PluginType = .enrichment
     public weak var analytics: Analytics? = nil
@@ -35,7 +35,7 @@ public class ObjCEventPlugin: NSObject, EventPlugin, ObjCPlugin {
     @objc(executeEvent:)
     public func execute(event: ObjCRawEvent?) -> ObjCRawEvent? {
         #if DEBUG
-        print("MRGEventPlugin's execute: method must be overridden!")
+        print("KRNEventPlugin's execute: method must be overridden!")
         #endif
         return event
     }
@@ -48,7 +48,7 @@ public class ObjCEventPlugin: NSObject, EventPlugin, ObjCPlugin {
     }
 }
 
-@objc(MRGBlockPlugin)
+@objc(KRNBlockPlugin)
 public class ObjCBlockPlugin: ObjCEventPlugin {
     let block: (ObjCRawEvent?) -> ObjCRawEvent?
 

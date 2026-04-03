@@ -10,7 +10,7 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (nonatomic, retain, nullable) MRGAnalytics *analytics;
+@property (nonatomic, retain, nullable) KRNAnalytics *analytics;
 
 @end
 

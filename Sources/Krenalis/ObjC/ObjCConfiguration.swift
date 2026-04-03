@@ -10,7 +10,7 @@
 import Foundation
 import JSONSafeEncoding
 
-@objc(MRGConfiguration)
+@objc(KRNConfiguration)
 public class ObjCConfiguration: NSObject {
     internal var configuration: Configuration
 

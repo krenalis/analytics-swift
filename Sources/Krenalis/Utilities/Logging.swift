@@ -20,13 +20,13 @@ extension Analytics {
         var string: String {
             switch self {
             case .error:
-                return "MRG_ERROR: "
+                return "KRN_ERROR: "
             case .warning:
-                return "MRG_WARNING: "
+                return "KRN_WARNING: "
             case .debug:
-                return "MRG_DEBUG: "
+                return "KRN_DEBUG: "
             case .none:
-                return "MRG_INFO: "
+                return "KRN_INFO: "
             }
         }
     }

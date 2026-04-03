@@ -8,7 +8,7 @@
 import Foundation
 import Krenalis
 
-@objc(MRGTestDestination)
+@objc(KRNTestDestination)
 public class ObjCTestDestination: NSObject, ObjCPlugin, ObjCPluginShim {
     public func instance() -> EventPlugin { return TestDestination() }
 }
